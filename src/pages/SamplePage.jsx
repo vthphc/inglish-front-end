@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
+import SampleComponent from "../components/SampleComponent";
 
 export default function SamplePage() {
-  return (
-    <div className='text-4xl text-red-500'>SamplePage</div>
-  )
+    return (
+            <SampleComponent />
+    );
 }
