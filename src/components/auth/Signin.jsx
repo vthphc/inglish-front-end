@@ -2,37 +2,24 @@ import React from "react";
 import { useRef } from "react";
 import { Button, Input } from "@material-tailwind/react";
 
-export default function SampleComponent() {
+export default function Signin() {
     const inputRefs = {
         username: useRef(""),
         email: useRef(""),
         password: useRef(""),
-        confirmPassword: useRef(""),
     };
     const inputs = [
         {
             id: 1,
-            type: "text",
-            label: "Tên người dùng",
-            inputRef: inputRefs.username,
-        },
-        {
-            id: 2,
             type: "email",
             label: "Email",
             inputRef: inputRefs.email,
         },
         {
-            id: 3,
+            id: 2,
             type: "password",
             label: "Mật khẩu",
             inputRef: inputRefs.password,
-        },
-        {
-            id: 4,
-            type: "password",
-            label: "Điền lại mật khẩu",
-            inputRef: inputRefs.confirmPassword,
         },
     ];
 
@@ -60,7 +47,7 @@ export default function SampleComponent() {
                     />
                 ))}
                 <Button type="submit" className="my-4 bg-purple-700">
-                    Submit
+                    Đăng nhập
                 </Button>
                 <div className="flex">
                     <hr className="border-t-[1] grow m-auto border-gray-300"></hr>
@@ -69,15 +56,15 @@ export default function SampleComponent() {
                 </div>
                 <Button
                     className="my-4 bg-red-500"
-                    onClick={() => alert("Đăng ký qua Google")}
+                    onClick={() => alert("Đăng nhập qua Google")}
                 >
-                    Đăng ký qua Google
+                    Đăng nhập qua Google
                 </Button>
                 <Button
                     className="my-4 bg-blue-500"
-                    onClick={() => alert("Đăng ký qua Facebook")}
+                    onClick={() => alert("Đăng nhập qua Facebook")}
                 >
-                    Đăng ký qua Facebook
+                    Đăng nhập qua Facebook
                 </Button>
             </form>
         </div>
