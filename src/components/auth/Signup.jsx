@@ -86,13 +86,18 @@ export default function Signup() {
                 className="*:my-2 flex flex-col w-1/5"
                 onSubmit={handleSubmit}
             >
-                {inputs.map((input, index) => (
-                    <Input
-                        key={input.id}
-                        {...input}
-                        onChange={handleChange}
-                        className="p-2"
-                    />
+                {inputs.map((input) => (
+                    <>
+                        <Input
+                            key={input.id}
+                            {...input}
+                            onChange={handleChange}
+                            className="p-2"
+                        />
+                        {errors[input.name] && (
+                            <span className="text-red-500 text-sm">{errors[input.name]}</span>
+                        )}
+                    </>
                 ))}
                 <Button
                     type="submit"

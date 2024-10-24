@@ -12,12 +12,14 @@ export default function Signin() {
         {
             id: 1,
             type: "email",
+            name: "email",
             label: "Email",
             inputRef: inputRefs.email,
         },
         {
             id: 2,
             type: "password",
+            name: "password",
             label: "Mật khẩu",
             inputRef: inputRefs.password,
         },

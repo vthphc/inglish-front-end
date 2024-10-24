@@ -1,7 +1,10 @@
 import * as Yup from "yup";
 
 export const validationSchema = Yup.object({
-    username: Yup.string().required().min(3).max(16),
+    username: Yup.string()
+        .required()
+        .min(3, "Username must be between 3-16 characters long")
+        .max(16, "Username must be between 3-16 characters long"),
     email: Yup.string()
         .required("Email is Required")
         .email("Invalid email format"),
@@ -11,8 +14,11 @@ export const validationSchema = Yup.object({
         .matches(/[0-9]/, "Password must contain a number")
         .matches(/[a-z]/, "Password must contain a lowercase letter")
         .matches(/[A-Z]/, "Password must contain an uppercase letter")
-        .matches(/[!@#$%^&*()]/, "Password must contain a special character"),
+        .matches(
+            /[!@#$%^&*()]/,
+            "Password must contain a special character" //\n! @ # $ % ^ & * ( )
+        ),
     confrimPasword: Yup.string()
-        .oneOf([Yup.ref("password")], "Password must match")
-        .required("Please re-enter your password"),
+        .required("Please re-enter your password")
+        .oneOf([Yup.ref("password")], "Password must match"),
 });
