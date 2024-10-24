@@ -40,13 +40,12 @@ export default function Signin() {
             </p>
             <form className="*:my-2 flex flex-col" onSubmit={handleSubmit}>
                 {inputs.map((input) => (
-                    <Input
-                        key={input.id}
-                        {...input}
-                        className="bg-gray-200 focus:bg-white"
-                    />
+                    <Input key={input.id} {...input} className="p-2 " />
                 ))}
-                <Button type="submit" className="my-4 bg-purple-700">
+                <Button
+                    type="submit"
+                    className="py-4 rounded-2xl my-4 bg-purple-700 shadow-md shadow-gray-400"
+                >
                     Đăng nhập
                 </Button>
                 <div className="flex">
@@ -55,13 +54,13 @@ export default function Signin() {
                     <hr className="border-t-[1] grow m-auto border-gray-300"></hr>
                 </div>
                 <Button
-                    className="my-4 bg-red-500"
+                    className="py-4 rounded-2xl my-4 bg-red-500"
                     onClick={() => alert("Đăng nhập qua Google")}
                 >
                     Đăng nhập qua Google
                 </Button>
                 <Button
-                    className="my-4 bg-blue-500"
+                    className="py-4 rounded-2xl my-4 bg-blue-500"
                     onClick={() => alert("Đăng nhập qua Facebook")}
                 >
                     Đăng nhập qua Facebook

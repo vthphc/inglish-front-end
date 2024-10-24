@@ -51,15 +51,17 @@ export default function Signup() {
                     Hãy tạo một tài khoản để bắt đầu
                 </span>
             </p>
-            <form className="*:my-2 flex flex-col" onSubmit={handleSubmit}>
+            <form
+                className="*:my-2 flex flex-col w-1/5"
+                onSubmit={handleSubmit}
+            >
                 {inputs.map((input) => (
-                    <Input
-                        key={input.id}
-                        {...input}
-                        className="bg-gray-200 focus:bg-white"
-                    />
+                    <Input key={input.id} {...input} className="p-2 " />
                 ))}
-                <Button type="submit" className="my-4 bg-purple-700">
+                <Button
+                    type="submit"
+                    className="py-4 rounded-2xl my-4 bg-purple-700 shadow-md shadow-gray-400 "
+                >
                     Đăng ký
                 </Button>
                 <div className="flex">
@@ -68,13 +70,13 @@ export default function Signup() {
                     <hr className="border-t-[1] grow m-auto border-gray-300"></hr>
                 </div>
                 <Button
-                    className="my-4 bg-red-500"
+                    className="py-4 rounded-2xl my-4 bg-red-500"
                     onClick={() => alert("Đăng ký qua Google")}
                 >
                     Đăng ký qua Google
                 </Button>
                 <Button
-                    className="my-4 bg-blue-500"
+                    className="py-4 rounded-2xl my-4 bg-blue-500"
                     onClick={() => alert("Đăng ký qua Facebook")}
                 >
                     Đăng ký qua Facebook

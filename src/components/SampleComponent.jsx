@@ -27,12 +27,14 @@ export default function SampleComponent() {
             type: "password",
             label: "Mật khẩu",
             inputRef: inputRefs.password,
+
         },
         {
             id: 4,
             type: "password",
             label: "Điền lại mật khẩu",
             inputRef: inputRefs.confirmPassword,
+
         },
     ];
 
@@ -53,13 +55,9 @@ export default function SampleComponent() {
             </p>
             <form className="*:my-2 flex flex-col" onSubmit={handleSubmit}>
                 {inputs.map((input) => (
-                    <Input
-                        key={input.id}
-                        {...input}
-                        className="bg-gray-200 focus:bg-white"
-                    />
+                    <Input key={input.id} {...input} />
                 ))}
-                <Button type="submit" className="my-4 bg-purple-700">
+                <Button type="submit" className="bg-purple-700">
                     Submit
                 </Button>
                 <div className="flex">
