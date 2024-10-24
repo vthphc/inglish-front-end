@@ -12,4 +12,7 @@ export const validationSchema = Yup.object({
         .matches(/[a-z]/, "Password must contain a lowercase letter")
         .matches(/[A-Z]/, "Password must contain an uppercase letter")
         .matches(/[!@#$%^&*()]/, "Password must contain a special character"),
+    confrimPasword: Yup.string()
+        .oneOf([Yup.ref("password")], "Password must match")
+        .required("Please re-enter your password"),
 });

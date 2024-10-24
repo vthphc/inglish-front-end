@@ -1,6 +1,7 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
+import { validationSchema } from "../../utils/validationSchema";
 
 export default function Signup() {
     const inputRefs = {
@@ -9,36 +10,66 @@ export default function Signup() {
         password: useRef(""),
         confirmPassword: useRef(""),
     };
+    const [formData, setFormData] = useState({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+    const [errors, setErrors] = useState({});
     const inputs = [
         {
             id: 1,
             type: "text",
+            name: "username",
             label: "Tên người dùng",
             inputRef: inputRefs.username,
+            value: formData.username,
         },
         {
             id: 2,
             type: "email",
+            name: "email",
             label: "Email",
             inputRef: inputRefs.email,
+            value: formData.email,
         },
         {
             id: 3,
             type: "password",
+            name: "password",
             label: "Mật khẩu",
             inputRef: inputRefs.password,
+            value: formData.password,
         },
         {
             id: 4,
             type: "password",
+            name: "confirmPassword",
             label: "Điền lại mật khẩu",
             inputRef: inputRefs.confirmPassword,
+            value: formData.confirmPassword,
         },
     ];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputRefs.username.current.value);
+        try {
+            console.log(formData);
+            await validationSchema.validate(formData, { abortEarly: false });
+            console.log("Form submitted", formData);
+        } catch (error) {
+            const newErrors = {};
+            error.inner.forEach((err) => {
+                newErrors[err.path] = err.message;
+            });
+            setErrors(newErrors);
+            console.log(errors);
+        }
+    };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     return (
@@ -55,8 +86,13 @@ export default function Signup() {
                 className="*:my-2 flex flex-col w-1/5"
                 onSubmit={handleSubmit}
             >
-                {inputs.map((input) => (
-                    <Input key={input.id} {...input} className="p-2 " />
+                {inputs.map((input, index) => (
+                    <Input
+                        key={input.id}
+                        {...input}
+                        onChange={handleChange}
+                        className="p-2"
+                    />
                 ))}
                 <Button
                     type="submit"
