@@ -1,7 +1,8 @@
-import React from "react";
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
+import axios from "../../utils/axios.config";
 import { validationSchema } from "../../utils/validationSchema";
+import { createUserApi } from "../../api/auth/signup";
 
 export default function Signup() {
     const inputRefs = {
@@ -55,9 +56,11 @@ export default function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log(formData);
             await validationSchema.validate(formData, { abortEarly: false });
-            console.log("Form submitted", formData);
+            // console.log("Form submitted", formData);        
+            const { username, email, password } = formData;
+            const res = await createUserApi(username, email, password);
+            console.log("Success", res);
         } catch (error) {
             const newErrors = {};
             error.inner.forEach((err) => {
@@ -95,7 +98,9 @@ export default function Signup() {
                             className="p-2"
                         />
                         {errors[input.name] && (
-                            <span className="text-red-500 text-sm">{errors[input.name]}</span>
+                            <span className="text-red-500 text-sm">
+                                {errors[input.name]}
+                            </span>
                         )}
                     </>
                 ))}

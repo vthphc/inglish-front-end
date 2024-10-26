@@ -2,23 +2,23 @@ import * as Yup from "yup";
 
 export const validationSchema = Yup.object({
     username: Yup.string()
-        .required()
         .min(3, "Username must be between 3-16 characters long")
-        .max(16, "Username must be between 3-16 characters long"),
+        .max(16, "Username must be between 3-16 characters long")
+        .required("Tên người dùng không được để trống!"),
     email: Yup.string()
-        .required("Email is Required")
-        .email("Invalid email format"),
+        .email("Invalid email format")
+        .required("Email không được để trống!"),
     password: Yup.string()
-        .required("Missing password!")
         .min(6, "Password must be at least 8 characters")
-        .matches(/[0-9]/, "Password must contain a number")
-        .matches(/[a-z]/, "Password must contain a lowercase letter")
-        .matches(/[A-Z]/, "Password must contain an uppercase letter")
+        .matches(/[0-9]/, "Mật khẩu phải chứa một con số!")
+        .matches(/[a-z]/, "Mật khẩu phải chứa một chữ thường!")
+        .matches(/[A-Z]/, "Mật khẩu phải chứa một chữ in hoa!")
         .matches(
             /[!@#$%^&*()]/,
-            "Password must contain a special character" //\n! @ # $ % ^ & * ( )
-        ),
-    confrimPasword: Yup.string()
-        .required("Please re-enter your password")
-        .oneOf([Yup.ref("password")], "Password must match"),
+            "Mật khẩu phải chứa một ký tự đặc biệt!" //\n! @ # $ % ^ & * ( )
+        )
+        .required("Mật khẩu không được để trống!"),
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password")], "Mật khẩu không khớp!")
+        .required("Xin hãy điền lại mật khẩu!"),
 });
