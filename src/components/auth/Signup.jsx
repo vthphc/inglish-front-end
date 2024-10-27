@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
-import axios from "../../utils/axios.config";
+import { useNavigate } from "react-router-dom";
 import { validationSchema } from "../../utils/validationSchema";
-import { createUserApi } from "../../api/auth/signup";
+import { signupApi } from "../../api/auth/signup";
 
 export default function Signup() {
+    const navigate = useNavigate();
     const inputRefs = {
         username: useRef(""),
         email: useRef(""),
@@ -57,10 +58,13 @@ export default function Signup() {
         e.preventDefault();
         try {
             await validationSchema.validate(formData, { abortEarly: false });
-            // console.log("Form submitted", formData);        
+            // console.log("Form submitted", formData);
             const { username, email, password } = formData;
-            const res = await createUserApi(username, email, password);
-            console.log("Success", res);
+            const res = await signupApi(username, email, password);
+            if (res) {
+                alert("Đăng ký thành công");
+                navigate("/signin");
+            }
         } catch (error) {
             const newErrors = {};
             error.inner.forEach((err) => {

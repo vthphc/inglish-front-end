@@ -1,6 +1,7 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
+import { signinApi } from "../../api/auth/signin";
 
 export default function Signin() {
     const inputRefs = {
@@ -8,6 +9,10 @@ export default function Signin() {
         email: useRef(""),
         password: useRef(""),
     };
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
     const inputs = [
         {
             id: 1,
@@ -25,9 +30,25 @@ export default function Signin() {
         },
     ];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputRefs.username.current.value);
+        try {
+            const { email, password } = formData;
+            const res = await signinApi(email, password);
+            // Handle successful response here
+            if (res) {
+                alert("Đăng nhập thành công!");
+                console.log(res);
+            }
+        } catch (error) {
+            // Handle error here
+            alert("Email/ mật khẩu không hợp lệ!");
+            console.log(error);
+        }
+    };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     return (
@@ -37,12 +58,17 @@ export default function Signin() {
                     Welcome to Inglish!
                 </span>
                 <span className="text-center mt-6 mb-12">
-                    Hãy tạo một tài khoản để bắt đầu
+                    Đăng nhập để bắt đầu
                 </span>
             </p>
             <form className="*:my-2 flex flex-col" onSubmit={handleSubmit}>
                 {inputs.map((input) => (
-                    <Input key={input.id} {...input} className="p-2 " />
+                    <Input
+                        key={input.id}
+                        {...input}
+                        onChange={handleChange}
+                        className="p-2 "
+                    />
                 ))}
                 <Button
                     type="submit"
