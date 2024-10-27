@@ -37,6 +37,7 @@ export default function Signin() {
             const res = await signinApi(email, password);
             // Handle successful response here
             if (res) {
+                localStorage.setItem("access_token", res.accessToken);
                 alert("Đăng nhập thành công!");
                 console.log(res);
             }
