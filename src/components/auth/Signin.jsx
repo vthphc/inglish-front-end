@@ -1,11 +1,14 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { Button, Input } from "@material-tailwind/react";
+import { AuthContext } from "../context/auth.context";
+import { useNavigate } from "react-router-dom";
 import { signinApi } from "../../api/auth/signin";
 
 export default function Signin() {
+    const navigate = useNavigate();
+    const { auth, setAuth } = useContext(AuthContext);
     const inputRefs = {
-        username: useRef(""),
         email: useRef(""),
         password: useRef(""),
     };
@@ -35,11 +38,20 @@ export default function Signin() {
         try {
             const { email, password } = formData;
             const res = await signinApi(email, password);
+            console.log(res);
             // Handle successful response here
-            if (res) {
+            if (res.accessToken) {
                 localStorage.setItem("access_token", res.accessToken);
                 alert("Đăng nhập thành công!");
-                console.log(res);
+                setAuth({
+                    isAuthenticated: true,
+                    user: {
+                        email: res?.user?.email ?? "",
+                        username: res?.user?.username ?? "",
+                        userId: res?.user?.userId ?? "",
+                    },
+                });
+                navigate("/home");
             }
         } catch (error) {
             // Handle error here
