@@ -8,7 +8,7 @@ export default function Header() {
 	const path = useLocation().pathname;
 	console.log("Check auth: ", auth);
 	return (
-		<div className="navbar py-6 px-12 border-b-2">
+		<div className="navbar py-4 px-12 border-b-2">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<div
@@ -97,10 +97,15 @@ export default function Header() {
 						className="btn btn-ghost btn-circle avatar placeholder border-gray-300 border-2 transition-all"
 					>
 						<div className="w-10 rounded-full bg-white">
-							<span className="text-purple-700">{`${Array.from(
-								auth?.user
-									?.username
-							)[0].toUpperCase()}`}</span>
+							{auth.isAuthenticated ? (
+								<span className="text-purple-700">{`${Array.from(
+									auth
+										?.user
+										?.username
+								)[0].toUpperCase()}`}</span>
+							) : (
+								<span className="loading loading-spinner loading-md"></span>
+							)}
 						</div>
 					</div>
 					<ul
