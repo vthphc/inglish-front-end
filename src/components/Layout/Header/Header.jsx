@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context";
+import IconProfile from "../../../assets/icons/IconProfile";
 
 export default function Header() {
+	const { auth, setAuth } = useContext(AuthContext);
 	const path = useLocation().pathname;
+	console.log("Check auth: ", auth);
 	return (
-		<div className="navbar bg-purple-700 p-5">
+		<div className="navbar py-6 px-12 border-b-2">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<div
@@ -17,7 +21,7 @@ export default function Header() {
 							className="h-5 w-5"
 							fill="none"
 							viewBox="0 0 24 24"
-							stroke="#FFFFFF"
+							stroke="#7e22ce"
 						>
 							<path
 								strokeLinecap="round"
@@ -29,7 +33,7 @@ export default function Header() {
 					</div>
 					<ul
 						tabIndex={0}
-						className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+						className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-purple-700 border-2 border-gray-300 font-semibold"
 					>
 						<li>
 							<Link to={`/home`}>
@@ -52,16 +56,16 @@ export default function Header() {
 				</div>
 				<Link
 					to={`/home`}
-					className="btn btn-ghost text-4xl tracking-widest text-white hover:bg-white hover:text-purple-700"
+					className="btn btn-active text-5xl tracking-[.25em] text-purple-700 bg-transparent border-0 hover:bg-transparent shadow-none"
 				>
-					Inglish
+					inglish
 				</Link>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1 gap-6">
 					<li>
 						<Link
-							className="btn btn-ghost text-white hover:bg-white hover:text-purple-700 text-lg"
+							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
 							to={`/home`}
 						>
 							Home
@@ -69,7 +73,7 @@ export default function Header() {
 					</li>
 					<li>
 						<Link
-							className="btn btn-ghost text-white hover:bg-white hover:text-purple-700 text-lg"
+							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
 							to={`/exams`}
 						>
 							Exams
@@ -77,7 +81,7 @@ export default function Header() {
 					</li>
 					<li>
 						<Link
-							className="btn btn-ghost text-white hover:bg-white hover:text-purple-700 text-lg"
+							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
 							to={`/flashcards`}
 						>
 							Flashcards
@@ -86,7 +90,36 @@ export default function Header() {
 				</ul>
 			</div>
 			<div className="navbar-end">
-				<a className="btn text-purple-700">Button</a>
+				<div className="dropdown dropdown-end">
+					<div
+						tabIndex={0}
+						role="button"
+						className="btn btn-ghost btn-circle avatar placeholder border-gray-300 border-2 transition-all"
+					>
+						<div className="w-10 rounded-full bg-white">
+							<span className="text-purple-700">{`${Array.from(
+								auth?.user
+									?.username
+							)[0].toUpperCase()}`}</span>
+						</div>
+					</div>
+					<ul
+						tabIndex={0}
+						className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-purple-700 border-2 border-gray-300 font-semibold"
+					>
+						<li>
+							<a className="justify-between">
+								Profile
+							</a>
+						</li>
+						<li>
+							<a>Settings</a>
+						</li>
+						<li>
+							<a>Logout</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	);
