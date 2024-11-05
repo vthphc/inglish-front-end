@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getExamsApi } from "../../api/exams/exams";
 import ExamCard from "./ExamCard";
 import IconBookmark from "../../assets/icons/IconBookmark";
 
 export default function Exams() {
+	const [exams, setExams] = useState([""]);
+	const [loading, setLoading] = useState(true);
+	useEffect(() => {
+		const fetchExams = async () => {
+			setLoading(true);
+			try {
+				const res = await getExamsApi();
+				if (res) {
+					setExams(res);
+				}
+				setLoading(false);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchExams();
+	}, []); //Lấy data từ api
 	const examsData = [
 		{ title: "Card 1", number: 1 },
 		{ title: "Card 2", number: 2 },
@@ -14,35 +32,52 @@ export default function Exams() {
 		{ title: "Card 8", number: 8 },
 		{ title: "Card 9", number: 9 },
 		{ title: "Card 10", number: 10 },
-	];//Data thật của number thì lấy content trong exams xong đếm số phần tử mảng
+	]; //Data thật của number thì lấy content trong exams xong đếm số phần tử mảng
+	const examsJsonHandler = () => {
+		console.log(exams);
+	};
 	return (
-		<div className="mx-80 grid 2xl:grid-cols-4 xl:grid-cols-2 ">
-			{examsData.map((item, index) => {
-				return (
-					<div
-						key={index}
-						className="card bg-base-100 w-auto shadow-xl m-4 border-2 border-purple-100"
-					>
-						<div className="card-body">
-							<h2 className="card-title">
-								{item.title}
-							</h2>
-							<p>
-								{item.number}{" "}
-								phần thi
-							</p>
-							<div className="card-actions justify-end">
-								<button className="btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2">
-									Chi tiết
-								</button>
-								<button className="btn btn-ghost bg-white text-purple-700 border-2 border-purple-700 hover:bg-purple-700 hover:text-white">
-									<IconBookmark />
-								</button>
-							</div>
-						</div>
+		<div>
+			{loading === true ? (
+				<div
+					style={{
+						position: "fixed",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%",
+					}}
+				>
+					<span className="loading loading-spinner loading-lg text-purple-700"></span>
+				</div>
+			) : (
+				<>
+					<div className="mx-80 grid 2xl:grid-cols-4 xl:grid-cols-2 ">
+						{examsData.map(
+							(item, index) => {
+								return (
+									<ExamCard
+										key={
+											index
+										}
+										title={
+											item.title
+										}
+										number={
+											item.number
+										}
+									/>
+								);
+							}
+						)}
 					</div>
-				);
-			})}
+					<button
+						onClick={examsJsonHandler}
+						className="btn btn-ghost bg-white text-purple-700 border-2 border-purple-700 hover:bg-purple-700 hover:text-white"
+					>
+						In ra json exams
+					</button>
+				</>
+			)}
 		</div>
 	);
 }

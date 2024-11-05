@@ -6,7 +6,7 @@ import IconProfile from "../../../assets/icons/IconProfile";
 export default function Header() {
 	const { auth, setAuth } = useContext(AuthContext);
 	const path = useLocation().pathname;
-	console.log("Check auth: ", auth);
+	// console.log("Check auth: ", auth);
 	return (
 		<div className="navbar py-4 px-12 border-b-2">
 			<div className="navbar-start">
