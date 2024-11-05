@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import IconBookmark from "../../assets/icons/IconBookmark";
 
 export default function ExamCard(props) {
+	
 	return (
 		<div className="card bg-base-100 w-auto shadow-xl m-4 border-2 border-purple-100">
 			<div className="card-body">
