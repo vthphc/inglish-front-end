@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import Header from "./Header/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { getAccountApi } from "../../api/auth/account";
 
 export default function PageLayout() {
-	const { setAuth, loading, setLoading } = useContext(AuthContext);
+	const navigate = useNavigate();
+	const { auth, setAuth, loading, setLoading } = useContext(AuthContext);
 	useEffect(() => {
 		const fetchAccount = async () => {
 			setLoading(true);
 			try {
 				const res = await getAccountApi();
-				if (res) {
+				if (!res.errorCode) {
 					setAuth({
 						isAuthenticated: true,
 						user: {
@@ -20,6 +21,8 @@ export default function PageLayout() {
 							userId: res.userId,
 						},
 					});
+				} else {
+					navigate("/");
 				}
 				setLoading(false);
 			} catch (error) {
@@ -45,7 +48,9 @@ export default function PageLayout() {
 			) : (
 				<>
 					<Header />
-					<Outlet />
+					<div className="my-6 ">
+						<Outlet />
+					</div>
 				</>
 			)}
 		</div>

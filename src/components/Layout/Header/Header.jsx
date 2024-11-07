@@ -8,7 +8,7 @@ export default function Header() {
 	const path = useLocation().pathname;
 	// console.log("Check auth: ", auth);
 	return (
-		<div className="navbar py-4 px-12 border-b-2">
+		<div className="navbar py-4 px-12 border-b-2 ">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<div

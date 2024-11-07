@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import ExamsPage from "./pages/ExamsPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
 import PageLayout from "./components/Layout/PageLayout";
+import ExamDetailsPage from "./pages/ExamDetailsPage";
 
 export default function App() {
 	return (
@@ -30,6 +31,10 @@ export default function App() {
 					<Route
 						path="/exams"
 						element={<ExamsPage />}
+					/>
+					<Route
+						path="/exams/:examId"
+						element={<ExamDetailsPage />}
 					/>
 					<Route
 						path="/flashcards"

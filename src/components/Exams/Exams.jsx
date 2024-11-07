@@ -4,7 +4,7 @@ import ExamCard from "./ExamCard";
 import IconBookmark from "../../assets/icons/IconBookmark";
 
 export default function Exams() {
-	const [exams, setExams] = useState([""]);
+	const [exams, setExams] = useState([]);
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const fetchExams = async () => {
@@ -36,6 +36,9 @@ export default function Exams() {
 	const examsJsonHandler = () => {
 		console.log(exams);
 	};
+	const countParts = (array) => {
+		return array.length;
+	};
 	return (
 		<div>
 			{loading === true ? (
@@ -51,30 +54,31 @@ export default function Exams() {
 				</div>
 			) : (
 				<>
-					<div className="mx-80 grid 2xl:grid-cols-4 xl:grid-cols-2 ">
-						{examsData.map(
-							(item, index) => {
-								return (
-									<ExamCard
-										key={
-											index
-										}
-										title={
-											item.title
-										}
-										number={
-											item.number
-										}
-									/>
-								);
-							}
-						)}
+					<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4">
+						{exams.map((item, index) => {
+							return (
+								<ExamCard
+									key={
+										index
+									}
+									title={
+										item.title
+									}
+									number={countParts(
+										item.content
+									)}
+									id={
+										item._id
+									}
+								/>
+							);
+						})}
 					</div>
 					<button
 						onClick={examsJsonHandler}
 						className="btn btn-ghost bg-white text-purple-700 border-2 border-purple-700 hover:bg-purple-700 hover:text-white"
 					>
-						In ra json exams
+						console.log(exams)
 					</button>
 				</>
 			)}
