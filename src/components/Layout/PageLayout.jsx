@@ -48,7 +48,7 @@ export default function PageLayout() {
 			) : (
 				<>
 					<Header />
-					<div className="my-6 ">
+					<div className="mt-12 ">
 						<Outlet />
 					</div>
 				</>

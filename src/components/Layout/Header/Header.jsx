@@ -56,7 +56,7 @@ export default function Header() {
 				</div>
 				<Link
 					to={`/home`}
-					className="btn btn-active text-5xl tracking-[.25em] text-purple-700 bg-transparent border-0 hover:bg-transparent shadow-none"
+					className="btn btn-active text-2xl tracking-[.1em] sm:text-5xl sm:tracking-[.25em] text-purple-700 bg-transparent border-0 hover:bg-transparent shadow-none"
 				>
 					inglish
 				</Link>
@@ -113,15 +113,22 @@ export default function Header() {
 						className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-purple-700 border-2 border-gray-300 font-semibold"
 					>
 						<li>
-							<a className="justify-between">
+							<Link
+								to={`/profile`}
+								className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
+							>
 								Profile
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a>Settings</a>
+							<Link className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg">
+								Settings
+							</Link>
 						</li>
 						<li>
-							<a>Logout</a>
+							<Link className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg">
+								Logout
+							</Link>
 						</li>
 					</ul>
 				</div>

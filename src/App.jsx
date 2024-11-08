@@ -9,6 +9,7 @@ import ExamsPage from "./pages/ExamsPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
 import PageLayout from "./components/Layout/PageLayout";
 import ExamDetailsPage from "./pages/ExamDetailsPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
 	return (
@@ -35,6 +36,10 @@ export default function App() {
 					<Route
 						path="/exams/:examId"
 						element={<ExamDetailsPage />}
+					/>
+					<Route
+						path="/profile"
+						element={<ProfilePage />}
 					/>
 					<Route
 						path="/flashcards"

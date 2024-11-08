@@ -57,7 +57,7 @@ export default function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await validationSchema.validate(formData, { abortEarly: false });
+            await validationSchema.validate(formData, { abortEarly: false }); 
             // console.log("Form submitted", formData);
             const { username, email, password } = formData;
             const res = await signupApi(username, email, password);
