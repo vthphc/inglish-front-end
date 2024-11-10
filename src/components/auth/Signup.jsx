@@ -6,6 +6,7 @@ import { signupApi } from "../../api/auth/signup";
 import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import FacebookIcon from "../../assets/icons/FacebookIcon";
+import HomeIcon from "../../assets/icons/HomeIcon";
 
 export default function Signup() {
 	const navigate = useNavigate();
@@ -88,8 +89,19 @@ export default function Signup() {
 		navigate("/signin");
 	};
 
+	const handleLanding = () => {
+		navigate("/");
+	};
+
 	return (
 		<div className="flex flex-col justify-center items-center min-h-screen ">
+			{" "}
+			<button
+				onClick={handleLanding}
+				className="px-2 btn btn-ghost absolute top-0 left-0 m-8 rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white "
+			>
+				<HomeIcon />
+			</button>
 			<button
 				onClick={handleLogin}
 				className="btn btn-ghost absolute top-0 right-0 m-8 rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white "
@@ -148,8 +160,7 @@ export default function Signup() {
 					}
 				>
 					{" "}
-					<GoogleIcon
-					/>
+					<GoogleIcon />
 					Đăng ký qua Google
 				</button>
 				<button
