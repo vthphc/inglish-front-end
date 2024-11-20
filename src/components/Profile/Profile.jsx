@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { changePasswordSchema } from "../../utils/validationSchema";
 import { AuthContext } from "../context/auth.context";
-import { changeInfoApi } from "../../api/auth/change-password";
+import { changeInfoApi } from "../../api/auth/change-info";
 
 export default function Profile() {
 	const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function Profile() {
 			label: "Email",
 			inputRef: inputRefs.email,
 			value: formData.email,
-            disabled: true,
+			disabled: true,
 		},
 		{
 			id: 3,

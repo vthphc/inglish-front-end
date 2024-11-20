@@ -8,7 +8,6 @@ export default function Exams() {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const fetchExams = async () => {
-			setLoading(true);
 			try {
 				const res = await getExamsApi();
 				if (res) {
