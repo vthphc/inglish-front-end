@@ -38,10 +38,10 @@ export default function CompleteTest(props) {
 					>
 						{content.map((item, index) => {
 							return (
-								<div key={index}>
+								<>
 									<input
 										type="radio"
-										name={`my_tabs_${index}`}
+										name={`my_tabs`}
 										role="tab"
 										className="text-base tab checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
 										aria-label="Tab content 1"
@@ -54,7 +54,7 @@ export default function CompleteTest(props) {
 											item.title
 										}
 									</div>
-								</div>
+								</>
 							);
 						})}
 					</div>
