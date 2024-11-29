@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { getLessonByIdApi } from "../../../api/exams/lessonId";
 import RectangleIcon from "../../../assets/icons/RectangleIcon";
+import { TestContext } from "../../context/test.context";
 
 export default function ListeningTest(props) {
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState();
 	const [questions, setQuestions] = useState([]);
-	const [answers, setAnswers] = useState({});
-	const [correctAnswers, setCorrectAnswers] = useState({});
+	const { answers, setAnswers } = useContext(TestContext);
+	const { correctAnswers, setCorrectAnswers } = useContext(TestContext);
 	useEffect(() => {
 		const fetchLesson = async () => {
 			const res = await getLessonByIdApi(props.lessonId);
 			setLoading(false);
 			setData(res);
 			setQuestions(res.questions);
+			//TODO: Đặt correct answer vào 1 cái global state object (trong context)
 			setCorrectAnswers(
 				res.questions.reduce(
 					(acc, { _id, correctAnswer }) => {
@@ -79,7 +81,7 @@ export default function ListeningTest(props) {
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
-				<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8 my-16">
+				<div className="">
 					<h1 className="text-4xl font-bold">
 						{data.title}
 					</h1>
@@ -117,8 +119,8 @@ export default function ListeningTest(props) {
 									>
 										<p className="flex flex-row">
 											<RectangleIcon
-												fillColor={`rgba(126,34,206,1)`}
-												strokeColor={`rgba(126,34,206,1)`}
+												fill={`rgba(126,34,206,1)`}
+												stroke={`rgba(126,34,206,1)`}
 											/>
 											<span className="text-2xl font-bold ml-2">
 												{`QUESTION ${
@@ -176,14 +178,14 @@ export default function ListeningTest(props) {
 								)
 							)}
 						</div>
-						<div className="flex flex-row-reverse">
+						{/* <div className="flex flex-row-reverse">
 							<button
 								type="submit"
 								className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16"
 							>
 								Submit
 							</button>
-						</div>
+						</div> */}
 					</form>
 				</div>
 			)}

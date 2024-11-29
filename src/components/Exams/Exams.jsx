@@ -20,18 +20,6 @@ export default function Exams() {
 		};
 		fetchExams();
 	}, []); //Lấy data từ api
-	const examsData = [
-		{ title: "Card 1", number: 1 },
-		{ title: "Card 2", number: 2 },
-		{ title: "Card 3", number: 3 },
-		{ title: "Card 4", number: 4 },
-		{ title: "Card 5", number: 5 },
-		{ title: "Card 6", number: 6 },
-		{ title: "Card 7", number: 7 },
-		{ title: "Card 8", number: 8 },
-		{ title: "Card 9", number: 9 },
-		{ title: "Card 10", number: 10 },
-	]; //Data thật của number thì lấy content trong exams xong đếm số phần tử mảng
 	const examsJsonHandler = () => {
 		console.log(exams);
 	};
@@ -53,7 +41,10 @@ export default function Exams() {
 				</div>
 			) : (
 				<>
-					<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4">
+					{/* sm:mx-24 md:mx-40 lg:mx-80 flex flex-col
+					sm:grid md:grid-cols-2 xl:grid-cols-2
+					2xl:grid-cols-4 */}
+					<div className="sm:mx-24 md:mx-40 lg:mx-80 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 ">
 						{exams.map((item, index) => {
 							return (
 								<ExamCard
@@ -73,12 +64,12 @@ export default function Exams() {
 							);
 						})}
 					</div>
-					<button
+					{/* <button
 						onClick={examsJsonHandler}
 						className="btn btn-ghost bg-white text-purple-700 border-2 border-purple-700 hover:bg-purple-700 hover:text-white"
 					>
 						console.log(exams)
-					</button>
+					</button> */}
 				</>
 			)}
 		</div>

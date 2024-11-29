@@ -3,8 +3,6 @@ import * as React from "react";
 function RectangleIcon(props) {
 	return (
 		<svg
-			fill= {props.fillColor}
-			stroke= {props.strokeColor}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}

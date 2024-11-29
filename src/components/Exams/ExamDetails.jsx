@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getExamByIdApi } from "../../api/exams/examId";
 import { getLessonByIdApi } from "../../api/exams/lessonId";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BadgeType from "./BadgeType";
 
 export default function ExamDetails(props) {
+	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
 	const [content, setContent] = useState([]);
 	const [data, setData] = useState();
@@ -100,19 +102,22 @@ export default function ExamDetails(props) {
 							role="tabpanel"
 							className="tab-content py-10"
 						>
-							<button className="btn">
-								Làm test
+							<button
+								onClick={() => {navigate("test")}}
+								className="btn btn-ghost bg-white text-purple-700 border-2 border-purple-700 hover:bg-purple-700 hover:text-white w-1/4"
+							>
+								Làm full test
 							</button>
 						</div>
 					</div>
-					<button
+					{/* <button
 						className="btn"
 						onClick={() => {
 							console.log(data);
 						}}
 					>
 						In res
-					</button>
+					</button> */}
 				</div>
 			)}
 		</div>
