@@ -19,7 +19,7 @@ export default function FlashcardCard(props) {
 								)
 								.showModal()
 						}
-						className="text-xs  px-2 btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2"
+						className="text-xs px-2 btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2"
 					>
 						Chi tiết
 					</button>
