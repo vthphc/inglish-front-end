@@ -41,7 +41,7 @@ export default function FlashcardCard(props) {
 			<div className="card-body">
 				<div className="flex flex-row justify-between">
 					<h2 className="card-title">
-						Topic: {props.title}
+						{props.word}
 					</h2>
 					<div
 						onClick={() =>
@@ -65,7 +65,10 @@ export default function FlashcardCard(props) {
 						}}
 					/>
 				</div>
-				<p className="text-gray-600">{props.word}</p>
+				<div className="text-gray-600 space-x-1">
+                    <span>Topic:</span>
+                    <span className="italic font-bold">{props.title}</span>
+                </div>
 				<div className="card-actions justify-end">
 					<button
 						onClick={() =>
@@ -75,9 +78,9 @@ export default function FlashcardCard(props) {
 								)
 								.showModal()
 						}
-						className="text-xs px-2 btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2"
+						className="text-sm px-2 btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2"
 					>
-						Chi tiết
+						Details
 					</button>
 				</div>
 			</div>
