@@ -6,7 +6,8 @@ import {
 } from "../../api/flashcards/flashcards";
 import { AuthContext } from "../context/auth.context";
 import QuestionMark from "../../assets/icons/QuestionMark";
-import { FlashcardModal, TutorialModal } from "./FlashcardModal";
+import FlashcardModal from "./FlashcardModal";
+import TutorialModal from "./TutorialModal";
 
 export default function Flashcards() {
 	const [flashcards, setFlashcards] = useState([]);
