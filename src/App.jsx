@@ -12,6 +12,7 @@ import ExamDetailsPage from "./pages/ExamDetailsPage";
 import ProfilePage from "./pages/ProfilePage";
 import ListeningPage from "./pages/ListeningPage";
 import TestPage from "./pages/TestPage";
+import FlashcardGenerate from "./components/Flashcards/FlashcardGenerate";
 
 export default function App() {
 	return (
@@ -54,6 +55,10 @@ export default function App() {
 					<Route
 						path="/flashcards"
 						element={<FlashcardsPage />}
+					/>
+					<Route 
+						path="/flashcards/generate"
+						element={<FlashcardGenerate />}
 					/>
 				</Route>
 			</Routes>
