@@ -1,10 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+import { postFlashcardApi } from "../../api/flashcards/flashcards";
 
-export default function FlashcardModal() {
-	const [inputValue, setInputValue] = useState("");
+export default function FlashcardModal(props) {
+	const [topic, setTopic] = useState("");
+	const { auth } = useContext(AuthContext);
+
 	const handleSubmit = (e) => {
 		e.preventDefault(); // Prevents page refresh
-		console.log(inputValue); // Logs the value to the console
+		console.log(topic); // Logs the value to the console
+	};
+
+	const handleGenerateFlashcard = async () => {
+		if (topic === "") {
+			alert("Please enter a topic!");
+			return;
+		}
+		props.setLoading(true);
+		const res = await postFlashcardApi(topic, auth.user.userId);
+		props.setFlashcards([res, ...props.flashcards]);
+		setTopic("");
+		props.setLoading(false);
 	};
 	return (
 		<div className="">
@@ -26,7 +42,7 @@ export default function FlashcardModal() {
 			</button>
 			<dialog id="flashcard_modal" className="modal">
 				<form
-					onSubmit={handleSubmit}
+					onSubmit={handleGenerateFlashcard}
 					className="modal-box"
 					id="flashcard_modal_form"
 				>
@@ -39,11 +55,9 @@ export default function FlashcardModal() {
 						type="text"
 						placeholder="Điền vào đây"
 						className="input input-ghost w-full max-w-xs my-4 "
-						value={inputValue}
+						value={topic}
 						onChange={(e) =>
-							setInputValue(
-								e.target.value
-							)
+							setTopic(e.target.value)
 						} // Updates state
 					/>
 					<p className="py-4">
