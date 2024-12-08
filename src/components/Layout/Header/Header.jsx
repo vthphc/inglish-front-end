@@ -87,6 +87,14 @@ export default function Header() {
 							Flashcards
 						</Link>
 					</li>
+					<li>
+						<Link
+							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
+							to={`/phrases`}
+						>
+							Phrases
+						</Link>
+					</li>
 				</ul>
 			</div>
 			<div className="navbar-end">

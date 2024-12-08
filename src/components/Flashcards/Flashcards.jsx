@@ -75,7 +75,7 @@ export default function Flashcards() {
                         />
                     </div>
                     <TutorialModal id="my_modal_2" />
-                    <div className="sm:mx-24 md:mx-40 lg:mx-80 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 ">
+                    <div className="sm:mx-24 md:mx-40 lg:mx-60 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 ">
                         {flashcards.map((item, index) => {
                             return (
                                 <FlashcardCard
