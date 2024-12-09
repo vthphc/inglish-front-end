@@ -56,7 +56,7 @@ export default function Header() {
 				</div>
 				<Link
 					to={`/home`}
-					className="btn btn-active text-2xl tracking-[.1em] sm:text-5xl sm:tracking-[.25em] text-purple-700 bg-transparent border-0 hover:bg-transparent shadow-none"
+					className="btn btn-active text-3xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[.1em] sm:tracking-[.25em] text-purple-700 bg-transparent border-0 hover:bg-transparent shadow-none"
 				>
 					inglish
 				</Link>
