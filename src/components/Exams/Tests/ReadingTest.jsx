@@ -9,63 +9,118 @@ export default function ReadingTest(props) {
 	const [questions, setQuestions] = useState([]);
 	const { answers, setAnswers } = useContext(TestContext);
 	const { correctAnswers, setCorrectAnswers } = useContext(TestContext);
+
 	useEffect(() => {
 		const fetchLesson = async () => {
 			const res = await getLessonByIdApi(props.lessonId);
 			setLoading(false);
 			setData(res);
 			setQuestions(res.questions);
+			console.log("res questions: ", res.questions);
 			//TODO: Đặt correct answer vào 1 cái global state object (trong context)
-			setCorrectAnswers(
-				res.questions.reduce(
-					(acc, { _id, correctAnswer }) => {
-						acc[_id] = correctAnswer;
-						return acc;
-					},
-					{}
-				)
+			const filterdAttributes = res.questions.map(
+				({ _id, correctAnswer }) => ({
+					_id,
+					answer: correctAnswer,
+				})
 			);
+			setCorrectAnswers((prevAnswers) => [
+				...prevAnswers,
+				...filterdAttributes,
+			]);
 		};
 		fetchLesson();
 	}, []);
 
-	const handleChange = (questionId, value) => {
-		setAnswers((prevAnswers) => ({
-			...prevAnswers,
-			[questionId]: value,
-		}));
-	};
+	const handleChange = (id, newAnswer) => {
+		setAnswers((prevItems) => {
+			// Check if an item with the same id exists
+			const itemExists = prevItems.some(
+				(item) => item._id === id
+			);
 
-	const compareObjects = (obj1, obj2) => {
-		let matchCount = 0;
-		const allKeys = new Set([
-			...Object.keys(obj1),
-			...Object.keys(obj2),
-		]);
-
-		const result = {};
-		allKeys.forEach((key) => {
-			if (obj1[key] === obj2[key]) {
-				result[key] = true; // Property matches
-				matchCount++;
+			if (itemExists) {
+				// Update the existing item
+				return prevItems.map((item) =>
+					item._id === id
+						? { ...item, answer: newAnswer }
+						: item
+				);
 			} else {
-				result[key] = false; // Property does not match
+				// Add a new item if it doesn't exist
+				return [
+					...prevItems,
+					{ _id: id, answer: newAnswer },
+				];
 			}
 		});
+	};
 
+	const compareAnswers = (correctAnswers, userAnswers) => {
+		let matchCount = 0;
+		const result = correctAnswers.map((correctAnswer) => {
+			const userAnswer = userAnswers.find(
+				(answer) => answer._id === correctAnswer._id
+			);
+			const isCorrect =
+				userAnswer &&
+				userAnswer.answer === correctAnswer.answer;
+			if (isCorrect) matchCount++;
+			return {
+				_id: correctAnswer._id,
+				isCorrect,
+			};
+		});
 		return {
-			correctAnswers: `${matchCount}/${allKeys.size}`,
+			correctAnswers: `${matchCount}/${correctAnswers.length}`,
 			result,
 		};
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("Correct Answers:", correctAnswers);
+		const comparison = compareAnswers(correctAnswers, answers);
 		console.log("Selected Answers:", answers);
-		const comparison = compareObjects(correctAnswers, answers);
-		console.log(comparison);
+		console.log("Comparison result: ", comparison);
 	};
+
+	// const handleChange = (questionId, value) => {
+	// 	setAnswers((prevAnswers) => ({
+	// 		...prevAnswers,
+	// 		[questionId]: value,
+	// 	}));
+	// };
+
+	// const compareObjects = (obj1, obj2) => {
+	// 	let matchCount = 0;
+	// 	const allKeys = new Set([
+	// 		...Object.keys(obj1),
+	// 		...Object.keys(obj2),
+	// 	]);
+
+	// 	const result = {};
+	// 	allKeys.forEach((key) => {
+	// 		if (obj1[key] === obj2[key]) {
+	// 			result[key] = true; // Property matches
+	// 			matchCount++;
+	// 		} else {
+	// 			result[key] = false; // Property does not match
+	// 		}
+	// 	});
+
+	// 	return {
+	// 		correctAnswers: `${matchCount}/${allKeys.size}`,
+	// 		result,
+	// 	};
+	// };
+
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	console.log("Correct Answers:", correctAnswers);
+	// 	console.log("Selected Answers:", answers);
+	// 	const comparison = compareObjects(correctAnswers, answers);
+	// 	console.log(comparison);
+	// };
 
 	return (
 		<div>
@@ -76,8 +131,7 @@ export default function ReadingTest(props) {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%",
-					}}
-				>
+					}}>
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
@@ -99,8 +153,7 @@ export default function ReadingTest(props) {
 					<p>{data.contentUrl}</p>
 					<form
 						onSubmit={handleSubmit}
-						className="mt-4"
-					>
+						className="mt-4">
 						<div className="flex flex-col gap-4">
 							{questions.map(
 								(
@@ -111,8 +164,7 @@ export default function ReadingTest(props) {
 										key={
 											question._id
 										}
-										className="flex flex-col gap-2 mt-2"
-									>
+										className="flex flex-col gap-2 mt-2">
 										<p className="flex flex-row">
 											<RectangleIcon
 												fill={`rgba(126,34,206,1)`}
@@ -139,8 +191,7 @@ export default function ReadingTest(props) {
 													key={
 														index
 													}
-													className="flex gap-2"
-												>
+													className="flex gap-2">
 													<input
 														required
 														className="radio primary"

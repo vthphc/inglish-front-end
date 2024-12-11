@@ -14,7 +14,6 @@ export default function Flashcards() {
     const [flashcardTopic, setFlashcardTopic] = useState("");
     const [loading, setLoading] = useState(false);
     const { auth } = useContext(AuthContext);
-    console.log("Auth: ", auth.user.userId);
 
     useEffect(() => {
         const fetchFlashcards = async () => {

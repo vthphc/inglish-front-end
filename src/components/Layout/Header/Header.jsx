@@ -2,11 +2,21 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import IconProfile from "../../../assets/icons/IconProfile";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 	const { auth, setAuth } = useContext(AuthContext);
 	const path = useLocation().pathname;
 	// console.log("Check auth: ", auth);
+	const navigate = useNavigate();
+	const handleLogout = () => {
+		setAuth({
+			isAuthenticated: false,
+			user: null,
+		});
+		localStorage.removeItem("access_token");
+		navigate("/");
+	};
 	return (
 		<div className="navbar py-4 px-12 border-b-2 ">
 			<div className="navbar-start">
@@ -14,15 +24,13 @@ export default function Header() {
 					<div
 						tabIndex={0}
 						role="button"
-						className="btn btn-ghost lg:hidden"
-					>
+						className="btn btn-ghost lg:hidden">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="h-5 w-5"
 							fill="none"
 							viewBox="0 0 24 24"
-							stroke="#7e22ce"
-						>
+							stroke="#7e22ce">
 							<path
 								strokeLinecap="round"
 								strokeLinejoin="round"
@@ -33,8 +41,7 @@ export default function Header() {
 					</div>
 					<ul
 						tabIndex={0}
-						className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-purple-700 border-2 border-gray-300 font-semibold"
-					>
+						className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-purple-700 border-2 border-gray-300 font-semibold">
 						<li>
 							<Link to={`/home`}>
 								Home
@@ -47,8 +54,7 @@ export default function Header() {
 						</li>
 						<li>
 							<Link
-								to={`/flashcards`}
-							>
+								to={`/flashcards`}>
 								Flashcards
 							</Link>
 						</li>
@@ -56,8 +62,7 @@ export default function Header() {
 				</div>
 				<Link
 					to={`/home`}
-					className="btn btn-active text-3xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[.1em] sm:tracking-[.25em] text-purple-700 bg-transparent border-0 hover:bg-transparent shadow-none"
-				>
+					className="btn btn-active text-3xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[.1em] sm:tracking-[.25em] text-purple-700 bg-transparent border-0 hover:bg-transparent shadow-none">
 					inglish
 				</Link>
 			</div>
@@ -66,32 +71,28 @@ export default function Header() {
 					<li>
 						<Link
 							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
-							to={`/home`}
-						>
+							to={`/home`}>
 							Home
 						</Link>
 					</li>
 					<li>
 						<Link
 							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
-							to={`/exams`}
-						>
+							to={`/exams`}>
 							Exams
 						</Link>
 					</li>
 					<li>
 						<Link
 							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
-							to={`/flashcards`}
-						>
+							to={`/flashcards`}>
 							Flashcards
 						</Link>
 					</li>
 					<li>
 						<Link
 							className="btn btn-ghost text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
-							to={`/phrases`}
-						>
+							to={`/phrases`}>
 							Phrases
 						</Link>
 					</li>
@@ -102,8 +103,7 @@ export default function Header() {
 					<div
 						tabIndex={0}
 						role="button"
-						className="btn btn-ghost btn-circle avatar placeholder border-gray-300 border-2 transition-all"
-					>
+						className="btn btn-ghost btn-circle avatar placeholder border-gray-300 border-2 transition-all">
 						<div className="w-10 rounded-full bg-white">
 							{auth.isAuthenticated ? (
 								<span className="text-purple-700">{`${Array.from(
@@ -118,13 +118,11 @@ export default function Header() {
 					</div>
 					<ul
 						tabIndex={0}
-						className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-purple-700 border-2 border-gray-300 font-semibold"
-					>
+						className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-purple-700 border-2 border-gray-300 font-semibold">
 						<li>
 							<Link
 								to={`/profile`}
-								className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg"
-							>
+								className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg">
 								Profile
 							</Link>
 						</li>
@@ -134,9 +132,9 @@ export default function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg">
+							<button onClick={handleLogout} className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg">
 								Logout
-							</Link>
+							</button>
 						</li>
 					</ul>
 				</div>

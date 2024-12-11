@@ -4,12 +4,13 @@ export const TestContext = createContext({
 	test: {},
 	answers: {},
 	correctAnswers: {},
+	answers1: [],
 });
 
 export const TestWrapper = (props) => {
 	const [test, setTest] = useState({});
-	const [answers, setAnswers] = useState({});
-	const [correctAnswers, setCorrectAnswers] = useState({});
+	const [answers, setAnswers] = useState([]);
+	const [correctAnswers, setCorrectAnswers] = useState([]);
 	return (
 		<TestContext.Provider
 			value={{
@@ -19,8 +20,7 @@ export const TestWrapper = (props) => {
 				setAnswers,
 				correctAnswers,
 				setCorrectAnswers,
-			}}
-		>
+			}}>
 			{props.children}
 		</TestContext.Provider>
 	);

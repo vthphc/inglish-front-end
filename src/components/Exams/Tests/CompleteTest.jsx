@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { getExamByIdApi } from "../../../api/exams/examId";
+import { postExamResult } from "../../../api/users/userTakenExams";
 import { TestWrapper } from "../../context/test.context";
 import { TestContext } from "../../context/test.context";
+import { AuthContext } from "../../context/auth.context";
 import ListeningTest from "./ListeningTest";
 import ReadingTest from "./ReadingTest";
 
@@ -12,6 +14,8 @@ export default function CompleteTest(props) {
 	const [loading, setLoading] = useState(true);
 	const [content, setContent] = useState([]);
 	const [data, setData] = useState();
+	const { auth, setAuth } = useContext(AuthContext);
+
 	useEffect(() => {
 		//TODO: Bỏ vào context test
 		const fetchExam = async () => {
@@ -19,42 +23,52 @@ export default function CompleteTest(props) {
 			setLoading(false);
 			setData(res);
 			setContent(res.content);
-			console.log(res.content);
+			// console.log("content: ", res.content);
+			// console.log("res: ", res);
 		};
 		fetchExam();
 	}, []);
 
-	const compareObjects = (obj1, obj2) => {
+	const compareAnswers = (correctAnswers, userAnswers) => {
 		let matchCount = 0;
-		const allKeys = new Set([
-			...Object.keys(obj1),
-			...Object.keys(obj2),
-		]);
-
-		const result = {};
-		allKeys.forEach((key) => {
-			if (obj1[key] === obj2[key]) {
-				result[key] = true; // Property matches
-				matchCount++;
-			} else {
-				result[key] = false; // Property does not match
-			}
+		const result = correctAnswers.map((correctAnswer) => {
+			const userAnswer = userAnswers.find(
+				(answer) => answer._id === correctAnswer._id
+			);
+			const isCorrect =
+				userAnswer &&
+				userAnswer.answer === correctAnswer.answer;
+			if (isCorrect) matchCount++;
+			return {
+				questionId: correctAnswer._id,
+				selectedAnswer: userAnswer?.answer,
+				isCorrect,
+			};
 		});
-
 		return {
-			correctAnswers: `${matchCount}/${allKeys.size}`,
+			score: `${matchCount}/${correctAnswers.length}`,
 			result,
 		};
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log("Correct Answers:", correctAnswers);
 		console.log("Selected Answers:", answers);
-		const comparison = compareObjects(correctAnswers, answers);
-		console.log(comparison);
-		setAnswers({});
-		setCorrectAnswers({});
+		const comparison = compareAnswers(correctAnswers, answers);
+		const resultData = {
+			selectedAnswers: comparison.result,
+			score: comparison.score,
+		};
+		console.log("Result Data:", resultData);
+		const postRes = await postExamResult(
+			auth.user.userId,
+			props.examId,
+			resultData
+		);
+		if (postRes) console.log("Posted result successfully!");
+		setAnswers([]);
+		setCorrectAnswers([]);
 	};
 
 	return (
@@ -66,8 +80,7 @@ export default function CompleteTest(props) {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%)",
-					}}
-				>
+					}}>
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
@@ -76,8 +89,7 @@ export default function CompleteTest(props) {
 						onSubmit={handleSubmit}
 						id="completeTest"
 						role="tablist"
-						className="tabs tabs-lifted tabs-lg"
-					>
+						className="tabs tabs-lifted tabs-lg">
 						{content.map((item, index) => {
 							//TODO: Test thử đổi vị trí cho tất cả input gần nhau, xem có bị lỗi không - KHÔNG ĐƯỢC
 							//TODO: Loop qua 2 lần để tạo ra 1 set radio button và 1 set divs - KHÔNG ĐƯỢC
@@ -85,8 +97,7 @@ export default function CompleteTest(props) {
 								<React.Fragment
 									key={
 										index
-									}
-								>
+									}>
 									<input
 										key={
 											index
@@ -103,8 +114,7 @@ export default function CompleteTest(props) {
 									/>
 									<div
 										role="tabpanel"
-										className="tab-content py-10"
-									>
+										className="tab-content py-10">
 										{item.type ===
 										"listening" ? (
 											<ListeningTest
@@ -128,9 +138,17 @@ export default function CompleteTest(props) {
 						<button
 							form="completeTest"
 							type="submit"
-							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16"
-						>
+							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16">
 							Submit
+						</button>
+						<button
+							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16"
+							onClick={() =>
+								console.log(
+									correctAnswers
+								)
+							}>
+							In correct answers
 						</button>
 					</div>
 				</div>
