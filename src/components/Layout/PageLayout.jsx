@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { getAccountApi } from "../../api/auth/account";
@@ -46,12 +47,13 @@ export default function PageLayout() {
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
-				<>
+				<div className="flex flex-col min-h-screen">
 					<Header />
-					<div className="mt-12 ">
+					<div className="mt-12 mb-24 min-h-screen">
 						<Outlet />
 					</div>
-				</>
+					<Footer/>
+				</div>
 			)}
 		</div>
 	);

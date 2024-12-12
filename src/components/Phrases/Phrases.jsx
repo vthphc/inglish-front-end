@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import PhraseCard from "./PhraseCard";
 import QuestionMark from "../../assets/icons/QuestionMark";
-import FlashcardModal from "../Flashcards/FlashcardModal";
+import PhrasesModal from "./PhrasesModal";
 import TutorialModal from "../Flashcards/TutorialModal";
 
 export default function Phrases() {
@@ -40,7 +40,7 @@ export default function Phrases() {
 				</div>
 			) : (
 				<div className="relative">
-					<div className="flex flex-col absolute top-0 right-0 z-50">
+					<div className="flex flex-col absolute top-1/4 right-0 z-50">
 						<button
 							onClick={() =>
 								document
@@ -52,13 +52,15 @@ export default function Phrases() {
 							className="m-auto btn btn-circle border-2 border-purple-100 bg-white hover:bg-gray-200 hover:border-transparent hover:text-purple-700">
 							<QuestionMark />
 						</button>
-						<FlashcardModal
+						<PhrasesModal
 							loading={loading}
 							setLoading={setLoading}
+							phrases={phrases}
+							setPhrases={setPhrases}
 						/>
 					</div>
 					<TutorialModal id="my_modal_2" />
-					<div className="sm:mx-24 md:mx-40 lg:mx-60 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-4 ">
+					<div className="mx-16 sm:mx-24 md:mx-40 lg:mx-60 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-8">
 						{phrases.map((phrase) => (
 							<PhraseCard
 								key={phrase._id}

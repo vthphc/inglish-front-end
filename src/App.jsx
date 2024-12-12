@@ -14,6 +14,7 @@ import ListeningPage from "./pages/ListeningPage";
 import TestPage from "./pages/TestPage";
 import FlashcardGenerate from "./components/Flashcards/FlashcardGenerate";
 import PhrasesPage from "./pages/PhrasesPage";
+import Contact from "./components/Contact/Contact";
 
 export default function App() {
 	return (
@@ -43,7 +44,7 @@ export default function App() {
 					/>
 					<Route
 						path="/exams/:examId/test"
-						element={<TestPage/>}
+						element={<TestPage />}
 					/>
 					<Route
 						path="/listening/:lessonId"
@@ -57,13 +58,17 @@ export default function App() {
 						path="/flashcards"
 						element={<FlashcardsPage />}
 					/>
-					<Route 
+					<Route
 						path="/flashcards/generate"
 						element={<FlashcardGenerate />}
 					/>
-					<Route 
-						path='/phrases'
+					<Route
+						path="/phrases"
 						element={<PhrasesPage />}
+					/>
+					<Route
+						path="/contact-us"
+						element={<Contact />}
 					/>
 				</Route>
 			</Routes>

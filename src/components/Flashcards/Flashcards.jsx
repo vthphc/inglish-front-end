@@ -55,7 +55,7 @@ export default function Flashcards() {
                 </div>
             ) : (
                 <div className="relative">
-                    <div className="flex flex-col absolute top-0 right-0 z-50">
+                    <div className="flex flex-col absolute top-1/4 right-0 z-50">
                         <button
                             onClick={() =>
                                 document
@@ -74,7 +74,7 @@ export default function Flashcards() {
                         />
                     </div>
                     <TutorialModal id="my_modal_2" />
-                    <div className="sm:mx-24 md:mx-40 lg:mx-60 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 ">
+                    <div className="mx-16 sm:mx-24 md:mx-40 lg:mx-60 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 ">
                         {flashcards.map((item, index) => {
                             return (
                                 <FlashcardCard

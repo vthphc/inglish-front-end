@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import PhraseDetails from "./PhraseDetails";
+import TrashCanIcon from "../../assets/icons/TrashCanIcon";
+import ConfirmationModal from "../CustomModals/ConfirmationModal";
+import { deletePhraseApi } from "../../api/phrases/phrases";
 
 export default function PhraseCard({ phrase }) {
 	const [isPhraseDetailsOpen, setIsPhraseDetailsOpen] =
@@ -9,18 +12,52 @@ export default function PhraseCard({ phrase }) {
 		setTyped(true);
 	};
 
+	const handleDelete = async (id) => {
+		const res = await deletePhraseApi(id);
+		if (res) {
+			alert("Phrase deleted successfully!");
+			window.location.reload();
+		} else {
+			alert("Failed to delete the phrase. Please try again.");
+		}
+	};
+
 	const [typed, setTyped] = useState(false);
 
 	return (
 		<div className="bg-white shadow-md rounded-lg p-4 border-2 border-purple-100 hover:shadow-lg transition-shadow duration-300">
 			{/* Topic Section */}
-			<h3 className="text-lg text-gray-800 mb-2 truncate">
-				<span>Topic: </span>
-				<span className="font-semibold italic">
-					{phrase.topic.charAt(0).toUpperCase() +
-						phrase.topic.slice(1)}
-				</span>
-			</h3>
+			<div className="flex flex-row justify-between">
+				<h2 className="text-lg text-gray-800 mb-2 truncate">
+					<span>Topic: </span>
+					<span className="font-semibold italic">
+						{phrase.topic
+							.charAt(0)
+							.toUpperCase() +
+							phrase.topic.slice(1)}
+					</span>
+				</h2>
+				<div
+					onClick={() =>
+						document
+							.getElementById(
+								"confirmModal"
+							)
+							.showModal()
+					}
+					// onClick={() =>
+					// 	handleDelete(props.id)
+					// }
+					className="btn btn-circle text-purple-700 duration-300 transform hover:scale-110 cursor-pointer bg-transparent border-1 border-gray-300">
+					<TrashCanIcon />
+				</div>
+				<ConfirmationModal
+					id="confirmModal"
+					onConfirm={() => {
+						handleDelete(phrase._id);
+					}}
+				/>
+			</div>
 
 			{/* Created At Section */}
 			<p className="text-sm text-gray-500">

@@ -2,27 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FlashcardDetails from "./FlashcardDetails";
 import { deleteFlashcardApi } from "../../api/flashcards/flashcards";
-import { IconButton } from "@material-tailwind/react";
 import ConfirmationModal from "../CustomModals/ConfirmationModal";
 import TrashCanIcon from "../../assets/icons/TrashCanIcon";
 
 export default function FlashcardCard(props) {
-	// const handleDelete = async (id) => {
-	// 	const confirmDelete = window.confirm(
-	// 		"Are you sure you want to remove this flashcard?"
-	// 	);
-	// 	if (confirmDelete) {
-	// 		const res = await deleteFlashcardApi(id);
-	// 		if (res) {
-	// 			alert("Flashcard deleted successfully!");
-	// 			window.location.reload();
-	// 		} else {
-	// 			alert(
-	// 				"Failed to delete the flashcard. Please try again."
-	// 			);
-	// 		}
-	// 	}
-	// };
 
 	const handleDelete = async (id) => {
 		const res = await deleteFlashcardApi(id);
@@ -37,7 +20,7 @@ export default function FlashcardCard(props) {
 	};
 
 	return (
-		<div className="card bg-base-100 w-auto shadow-xl m-4 border-2 border-purple-100">
+		<div className="card bg-base-100 w-auto shadow-md m-4 border-2 border-purple-100">
 			<div className="card-body">
 				<div className="flex flex-row justify-between">
 					<h2 className="card-title">
@@ -54,7 +37,7 @@ export default function FlashcardCard(props) {
 						// onClick={() =>
 						// 	handleDelete(props.id)
 						// }
-						className="btn btn-circle text-purple-700 duration-300 transform hover:scale-110 cursor-pointer bg-transparent border-0"
+						className="btn btn-circle text-purple-700 duration-300 transform hover:scale-110 cursor-pointer bg-transparent border-1 border-gray-300"
 					>
 						<TrashCanIcon />
 					</div>

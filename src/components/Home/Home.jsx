@@ -22,34 +22,37 @@ export default function Home() {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%",
-					}}
-				>
+					}}>
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
-				<div className="lg:px-80 px-12 py-4 bg-blue-gray-100">
-					<p className="text-xl lg:text-3xl text-blue-800">
-						Hello{" "}
-						<span className="font-bold">
-							{auth.user.username
-								.charAt(0)
-								.toUpperCase() +
-								auth.user.username.slice(
-									1
-								)}
-						</span>
-						!
-					</p>
-					<br />
-					<p className="text-xl lg:text-2xl text-blue-900">
-						Bookmarks của tôi:{" "}
-					</p>
-					<p className="text-xl lg:text-2xl text-blue-900">
-						Flashcards của tôi:
-					</p>
-					<p className="text-xl lg:text-2xl text-blue-900">
-						Đề thi mới nhất:
-					</p>
+				<div className="">
+					<div className="lg:px-80 px-12 py-4 bg-blue-gray-100 ">
+						<p className="text-xl lg:text-3xl text-blue-800">
+							Hello{" "}
+							<span className="font-bold">
+								{auth.user.username
+									.charAt(
+										0
+									)
+									.toUpperCase() +
+									auth.user.username.slice(
+										1
+									)}
+							</span>
+							!
+						</p>
+						<br />
+						<p className="text-xl lg:text-2xl text-blue-900">
+							Bookmarks của tôi:{" "}
+						</p>
+						<p className="text-xl lg:text-2xl text-blue-900">
+							Flashcards của tôi:
+						</p>
+						<p className="text-xl lg:text-2xl text-blue-900">
+							Đề thi mới nhất:
+						</p>
+					</div>
 				</div>
 			)}
 		</div>

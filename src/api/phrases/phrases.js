@@ -5,4 +5,9 @@ const getPhrasesApiByUserId = (userId) => {
     return axios.get(URL_API);
 };
 
-export { getPhrasesApiByUserId };
+const deletePhraseApi = (phraseId) => {
+    const URL_API = `/phrases/${phraseId}`;
+    return axios.delete(URL_API);
+};
+
+export { getPhrasesApiByUserId, deletePhraseApi };
