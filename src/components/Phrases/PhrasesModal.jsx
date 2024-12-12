@@ -45,7 +45,7 @@ export default function PhrasesModal(props) {
 					id="phrases_modal_form">
 					<h3 className="font-bold text-lg">
 						Hãy điền vào topic bạn muốn tạo
-						từ:
+						mẫu câu:
 					</h3>
 					<input
 						required
