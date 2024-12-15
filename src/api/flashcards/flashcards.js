@@ -20,8 +20,19 @@ const getFlashcardById = (flashcardId) => {
 };
 
 const deleteFlashcardApi = (flashcardId) => {
-	const URL_API = `/flashcards/${flashcardId}`;
-	return axios.delete(URL_API);
+    const URL_API = `/flashcards/${flashcardId}`;
+    return axios.delete(URL_API);
 };
 
-export { getFlashcardsByUserApi, postFlashcardApi, getFlashcardById, deleteFlashcardApi };
+const getThisMonthFlashcardsbByUserApi = (userId) => {
+    const URL_API = `/flashcards/user/${userId}/this-month`;
+    return axios.get(URL_API);
+};
+
+export {
+    getFlashcardsByUserApi,
+    postFlashcardApi,
+    getFlashcardById,
+    deleteFlashcardApi,
+    getThisMonthFlashcardsbByUserApi,
+};
