@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { getExamByIdApi } from "../../../api/exams/examId";
 import { postExamResult } from "../../../api/users/userTakenExams";
-import { TestWrapper } from "../../context/test.context";
+
 import { TestContext } from "../../context/test.context";
 import { AuthContext } from "../../context/auth.context";
 import ListeningTest from "./ListeningTest";
 import ReadingTest from "./ReadingTest";
 
 export default function CompleteTest(props) {
-	const { test, setTest } = useContext(TestContext);
 	const { answers, setAnswers } = useContext(TestContext);
 	const { correctAnswers, setCorrectAnswers } = useContext(TestContext);
 	const [loading, setLoading] = useState(true);
@@ -64,6 +63,7 @@ export default function CompleteTest(props) {
 		const postRes = await postExamResult(
 			auth.user.userId,
 			props.examId,
+			data.title,
 			resultData
 		);
 		if (postRes) console.log("Posted result successfully!");
@@ -91,8 +91,6 @@ export default function CompleteTest(props) {
 						role="tablist"
 						className="tabs tabs-lifted tabs-lg">
 						{content.map((item, index) => {
-							//TODO: Test thử đổi vị trí cho tất cả input gần nhau, xem có bị lỗi không - KHÔNG ĐƯỢC
-							//TODO: Loop qua 2 lần để tạo ra 1 set radio button và 1 set divs - KHÔNG ĐƯỢC
 							return (
 								<React.Fragment
 									key={
@@ -141,7 +139,7 @@ export default function CompleteTest(props) {
 							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16">
 							Submit
 						</button>
-						<button
+						{/* <button
 							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16"
 							onClick={() =>
 								console.log(
@@ -149,7 +147,7 @@ export default function CompleteTest(props) {
 								)
 							}>
 							In correct answers
-						</button>
+						</button> */}
 					</div>
 				</div>
 			)}

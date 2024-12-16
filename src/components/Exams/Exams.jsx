@@ -43,33 +43,28 @@ export default function Exams() {
 					{/* sm:mx-24 md:mx-40 lg:mx-80 flex flex-col
 					sm:grid md:grid-cols-2 xl:grid-cols-2
 					2xl:grid-cols-4 */}
-					<div className="min-h-screen">
-						<div className="mx-16 sm:mx-24 md:mx-40 lg:mx-80 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
-							{exams.map(
-								(
-									item,
-									index
-								) => {
-									return (
-										<ExamCard
-											key={
-												index
-											}
-											title={
-												item.title
-											}
-											number={countParts(
-												item.content
-											)}
-											id={
-												item._id
-											}
-										/>
-									);
-								}
-							)}
-						</div>
+
+					<div className="mx-16 sm:mx-24 md:mx-40 lg:mx-80 flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
+						{exams.map((item, index) => {
+							return (
+								<ExamCard
+									key={
+										index
+									}
+									title={
+										item.title
+									}
+									number={countParts(
+										item.content
+									)}
+									id={
+										item._id
+									}
+								/>
+							);
+						})}
 					</div>
+
 					{/* <button
 						onClick={examsJsonHandler}
 						className="btn btn-ghost bg-white text-purple-700 border-2 border-purple-700 hover:bg-purple-700 hover:text-white"

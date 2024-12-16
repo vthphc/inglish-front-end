@@ -8,7 +8,6 @@ import BadgeType from "./BadgeType";
 export default function ExamDetails(props) {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
-	const [content, setContent] = useState([]);
 	const [data, setData] = useState();
 	useEffect(() => {
 		const fetchExam = async () => {

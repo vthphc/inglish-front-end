@@ -62,44 +62,6 @@ export default function ListeningTest(props) {
 		});
 	};
 
-	// const handleChange = (questionId, value) => {
-	// 	setAnswers((prevAnswers) => ({
-	// 		...prevAnswers,
-	// 		[questionId]: value,
-	// 	}));
-	// };
-
-	// const compareObjects = (obj1, obj2) => {
-	// 	let matchCount = 0;
-	// 	const allKeys = new Set([
-	// 		...Object.keys(obj1),
-	// 		...Object.keys(obj2),
-	// 	]);
-
-	// 	const result = {};
-	// 	allKeys.forEach((key) => {
-	// 		if (obj1[key] === obj2[key]) {
-	// 			result[key] = true; // Property matches
-	// 			matchCount++;
-	// 		} else {
-	// 			result[key] = false; // Property does not match
-	// 		}
-	// 	});
-
-	// 	return {
-	// 		correctAnswers: `${matchCount}/${allKeys.size}`,
-	// 		result,
-	// 	};
-	// };
-
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	console.log("Correct Answers:", correctAnswers);
-	// 	console.log("Selected Answers:", answers);
-	// 	const comparison = compareObjects(correctAnswers, answers);
-	// 	console.log(comparison);
-	// };
-
 	const compareAnswers = (correctAnswers, userAnswers) => {
 		let matchCount = 0;
 		const result = correctAnswers.map((correctAnswer) => {
@@ -146,7 +108,7 @@ export default function ListeningTest(props) {
 						{data.title}
 					</h1>
 					<br />
-					<button
+					{/* <button
 						className="btn"
 						onClick={() => {
 							console.log(
@@ -154,7 +116,7 @@ export default function ListeningTest(props) {
 							);
 						}}>
 						In res
-					</button>
+					</button> */}
 					<audio
 						className="m-auto"
 						controls

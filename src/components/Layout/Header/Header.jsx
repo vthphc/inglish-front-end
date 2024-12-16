@@ -59,8 +59,7 @@ export default function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link
-								to={`/phrases`}>
+							<Link to={`/phrases`}>
 								Phrases
 							</Link>
 						</li>
@@ -130,6 +129,13 @@ export default function Header() {
 								to={`/profile`}
 								className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg">
 								Profile
+							</Link>
+						</li>
+						<li>
+							<Link
+								to={`/history`}
+								className="btn btn-ghost p-0 text-purple-700 hover:bg-purple-700 hover:text-white text-lg">
+								History
 							</Link>
 						</li>
 						<li>

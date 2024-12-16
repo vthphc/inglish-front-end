@@ -15,6 +15,8 @@ import TestPage from "./pages/TestPage";
 import FlashcardGenerate from "./components/Flashcards/FlashcardGenerate";
 import PhrasesPage from "./pages/PhrasesPage";
 import Contact from "./components/Contact/Contact";
+import HistoryPage from "./pages/HistoryPage";
+import HistoryDetailsPage from "./pages/HistoryDetailsPage";
 
 export default function App() {
 	return (
@@ -69,6 +71,14 @@ export default function App() {
 					<Route
 						path="/contact-us"
 						element={<Contact />}
+					/>
+					<Route
+						path="/history"
+						element={<HistoryPage />}
+					/>
+					<Route
+						path="/history/:historyId"
+						element={<HistoryDetailsPage />}
 					/>
 				</Route>
 			</Routes>
