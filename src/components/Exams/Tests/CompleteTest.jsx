@@ -139,15 +139,6 @@ export default function CompleteTest(props) {
 							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16">
 							Submit
 						</button>
-						{/* <button
-							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16"
-							onClick={() =>
-								console.log(
-									correctAnswers
-								)
-							}>
-							In correct answers
-						</button> */}
 					</div>
 				</div>
 			)}

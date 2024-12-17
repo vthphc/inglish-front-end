@@ -108,15 +108,6 @@ export default function ListeningTest(props) {
 						{data.title}
 					</h1>
 					<br />
-					{/* <button
-						className="btn"
-						onClick={() => {
-							console.log(
-								correctAnswers
-							);
-						}}>
-						In res
-					</button> */}
 					<audio
 						className="m-auto"
 						controls
@@ -195,13 +186,6 @@ export default function ListeningTest(props) {
 								)
 							)}
 						</div>
-						{/* <div className="flex flex-row-reverse">
-							<button
-								type="submit"
-								className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16">
-								Submit
-							</button>
-						</div> */}
 					</form>
 				</div>
 			)}
