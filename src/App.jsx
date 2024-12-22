@@ -20,7 +20,7 @@ import HistoryDetailsPage from "./pages/HistoryDetailsPage";
 
 export default function App() {
 	return (
-		<div>
+		<div className="">
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route

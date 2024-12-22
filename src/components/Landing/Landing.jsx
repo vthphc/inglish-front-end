@@ -3,6 +3,7 @@ import { Button, Input } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { getAccountApi } from "../../api/auth/account";
+import NewLanding from "./NewLanding";
 
 export default function Landing() {
 	const navigate = useNavigate();
@@ -33,7 +34,7 @@ export default function Landing() {
 		fetchAccount();
 	}, []);
 	return (
-		<div>
+		<>
 			{loading === true ? (
 				<div
 					style={{
@@ -46,8 +47,9 @@ export default function Landing() {
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
-				<div className="block mx-80 mt-64">
-					<div className="grid grid-cols-2 gap-20">
+				<div className="w-full min-h-screen flex">
+					<NewLanding />
+					{/* <div className="grid grid-cols-2 gap-20">
 						<div className="bg-gray-200"></div>
 						<div className="flex flex-col items-center gap-8">
 							<p className="text-3xl font-semibold text-center">
@@ -140,9 +142,9 @@ export default function Landing() {
 								BẮT ĐẦU
 							</Button>
 						</Link>
-					</div>
+					</div> */}
 				</div>
 			)}
-		</div>
+		</>
 	);
 }

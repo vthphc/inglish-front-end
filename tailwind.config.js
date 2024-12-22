@@ -22,7 +22,11 @@ module.exports = withMT({
 			"2xl": "1536px",
 			// => @media (min-width: 1536px) { ... }
 		},
-		extend: {},
+		extend: {
+			fontFamily: {
+				'roboto': ["Roboto Mono", "serif"]
+			}
+		},
 	},
 	plugins: [require("daisyui")],
 	daisyui: {
