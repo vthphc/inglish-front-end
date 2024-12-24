@@ -13,8 +13,7 @@ export default function ConfirmationModal(props) {
 				<div className="flex justify-between">
 					<button
 						onClick={props.onConfirm}
-						className="btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2"
-					>
+						className="btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2">
 						Có
 					</button>
 					<button
@@ -28,14 +27,15 @@ export default function ConfirmationModal(props) {
 											)
 											.close()
 						}
-						className="btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2"
-					>
+						className="btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2">
 						Không
 					</button>
 				</div>
 			</div>
 			<form method="dialog" className="modal-backdrop">
-				<button>close</button>
+				<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+					✕
+				</button>
 			</form>
 		</dialog>
 	);

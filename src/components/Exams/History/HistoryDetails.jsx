@@ -40,7 +40,7 @@ export default function HistoryDetails(props) {
 				</div>
 			) : (
 				<>
-					<button
+					{/* <button
 						className="btn btn-ghost"
 						onClick={() => {
 							console.log(original);
@@ -53,7 +53,7 @@ export default function HistoryDetails(props) {
 							console.log(history);
 						}}>
 						In History
-					</button>
+					</button> */}
 					<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8 my-16">
 						<form
 							id="completeTest"
@@ -76,7 +76,7 @@ export default function HistoryDetails(props) {
 												type="radio"
 												name={`my_tabs`}
 												role="tab"
-												className="text-base tab checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
+												className="text-base tab text-nowrap checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
 												aria-label={`Tab ${item.title}`}
 												defaultChecked={
 													index ===
@@ -89,6 +89,9 @@ export default function HistoryDetails(props) {
 												{item.type ===
 												"listening" ? (
 													<ListeningHistory
+														lessonId={
+															item._id
+														}
 														content={
 															item
 														}
@@ -98,6 +101,9 @@ export default function HistoryDetails(props) {
 													/>
 												) : (
 													<ReadingHistory
+														lessonId={
+															item._id
+														}
 														content={
 															item
 														}
