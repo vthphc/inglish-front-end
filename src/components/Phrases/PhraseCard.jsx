@@ -32,8 +32,8 @@ export default function PhraseCard({ phrase }) {
                 <h2 className="text-lg text-gray-800 mb-2 truncate">
                     <span>Topic: </span>
                     <span className="font-semibold italic">
-                        {phrase.topic.charAt(0).toUpperCase() +
-                            phrase.topic.slice(1)}
+                        {phrase.topic?.charAt(0).toUpperCase() +
+                            phrase.topic?.slice(1)}
                     </span>
                 </h2>
                 <div
