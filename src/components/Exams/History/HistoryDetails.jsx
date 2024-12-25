@@ -10,6 +10,7 @@ export default function HistoryDetails(props) {
 	const [loading, setLoading] = useState(true);
 	const [original, setOriginal] = useState();
 	const [history, setHistory] = useState();
+	
 	useEffect(() => {
 		const fetchDetails = async () => {
 			const historyRes = await getExamHistoryById(
