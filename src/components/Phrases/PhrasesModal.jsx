@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {
     getPhraseContextSuggestionsApi,
     getPhraseWithContextAndTopicApi,
+	sendTopicApi,
 } from "../../api/phrases/topic";
 import { AuthContext } from "../context/auth.context";
 import { s } from "motion/react-client";
@@ -35,22 +36,32 @@ export default function PhrasesModal(props) {
         }
 
         if (selectedSuggestion === "") {
-            alert("Please select a suggestion!");
-            return;
-        }
-
-        try {
-            props.setLoading(true);
-            const res = await getPhraseWithContextAndTopicApi(
-                auth.user.userId,
-                topic,
-                selectedSuggestion
-            );
-            props.setPhrases([res, ...props.phrases]);
-            setTopic("");
-            props.setLoading(false);
-        } catch (error) {
-            console.error("Error fetching phrase:", error);
+            try {
+                props.setLoading(true);
+                const res = await sendTopicApi(
+                    auth.user.userId,
+                    topic,
+                );
+                props.setPhrases([res, ...props.phrases]);
+                setTopic("");
+                props.setLoading(false);
+            } catch (error) {
+                console.error("Error fetching phrase:", error);
+            }
+        } else {
+            try {
+                props.setLoading(true);
+                const res = await getPhraseWithContextAndTopicApi(
+                    auth.user.userId,
+                    topic,
+                    selectedSuggestion
+                );
+                props.setPhrases([res, ...props.phrases]);
+                setTopic("");
+                props.setLoading(false);
+            } catch (error) {
+                console.error("Error fetching phrase:", error);
+            }
         }
     };
 
