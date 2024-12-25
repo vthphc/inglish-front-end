@@ -29,10 +29,20 @@ const getThisMonthFlashcardsbByUserApi = (userId) => {
     return axios.get(URL_API);
 };
 
+const postFlashcardDataFromDictionaryApi = (word, userId) => {
+    const URL_API = `/flashcards/getDataFromDictionaryAPI`;
+    const data = {
+        word,
+        userId,
+    };
+    return axios.post(URL_API, data);
+};
+
 export {
-    getFlashcardsByUserApi,
-    postFlashcardApi,
-    getFlashcardById,
     deleteFlashcardApi,
+    getFlashcardById,
+    getFlashcardsByUserApi,
     getThisMonthFlashcardsbByUserApi,
+    postFlashcardApi,
+    postFlashcardDataFromDictionaryApi,
 };

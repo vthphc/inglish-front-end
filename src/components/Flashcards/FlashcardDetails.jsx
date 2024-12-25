@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getFlashcardById } from "../../api/flashcards/flashcards";
 
 export default function FlashcardDetails(props) {
@@ -34,30 +34,12 @@ export default function FlashcardDetails(props) {
                     <p className="mb-4">
                         <span className="font-bold text-2xl">Example:</span>{" "}
                         <br />
-                        {data?.example}
+                        <p className="italic text-gray-500">
+                            Not Available on current version.
+                        </p>
                     </p>
-                    {phonetics.length > 0 ? (
-                        <p className="font-bold text-2xl">Pronunciation:</p>
-                    ) : (
-                        <></>
-                    )}
-                    {phonetics.map((phonetic, index) => (
-                        <div key={index}>
-                            <p className="italic font-bold">{phonetic.text}</p>
-                            {phonetic.audio ? (
-                                <div className="flex justify-center w-full">
-                                    <audio controls>
-                                        <source
-                                            src={phonetic.audio}
-                                            type="audio/mpeg"
-                                        />
-                                    </audio>
-                                </div>
-                            ) : (
-                                <></>
-                            )}
-                        </div>
-                    ))}
+                    <p className="font-bold text-2xl">Pronunciation:</p>
+                    <p className="italic text-gray-500">Not Available on current version.</p>
                 </div>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>

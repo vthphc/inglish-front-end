@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { postFlashcardApi } from "../../api/flashcards/flashcards";
+import { postFlashcardDataFromDictionaryApi } from "../../api/flashcards/flashcards";
 
 export default function FlashcardModal(props) {
 	const [topic, setTopic] = useState("");
@@ -17,11 +17,12 @@ export default function FlashcardModal(props) {
 			return;
 		}
 		props.setLoading(true);
-		const res = await postFlashcardApi(topic, auth.user.userId);
+		const res = await postFlashcardDataFromDictionaryApi(topic, auth.user.userId);
 		props.setFlashcards([res, ...props.flashcards]);
 		setTopic("");
 		props.setLoading(false);
 	};
+
 	return (
 		<div className="">
 			<button
