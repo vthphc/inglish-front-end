@@ -75,20 +75,6 @@ export default function ExamDetails(props) {
 						role="tablist"
 						className="tabs tabs-lifted"
 					>
-						<input
-							type="radio"
-							name="my_tabs_1"
-							role="tab"
-							className="text-base tab checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE] "
-							aria-label="Luyện tập"
-							defaultChecked
-						/>
-						<div
-							role="tabpanel"
-							className="tab-content py-10"
-						>
-							Tab content 1
-						</div>
 
 						<input
 							type="radio"
@@ -96,6 +82,7 @@ export default function ExamDetails(props) {
 							role="tab"
 							className="text-base tab checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
 							aria-label="Làm full test"
+							defaultChecked
 						/>
 						<div
 							role="tabpanel"

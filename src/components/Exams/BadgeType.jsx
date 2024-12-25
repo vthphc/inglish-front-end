@@ -7,13 +7,10 @@ export default function BadgeType(props) {
 				Listening
 			</div>
 		);
-	}
-
-	if (props.type === "reading") {
+	} else
 		return (
 			<div className="badge badge-ghost font-bold text-green-700 bg-green-100 mx-4">
-				Reading
+				{props.type}
 			</div>
 		);
-	}
 }

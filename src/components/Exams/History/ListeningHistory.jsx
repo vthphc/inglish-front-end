@@ -1,16 +1,29 @@
 import React from "react";
 import RectangleIcon from "../../../assets/icons/RectangleIcon";
+import CrossIcon from "../../../assets/icons/CrossIcon";
+import CheckIcon from "../../../assets/icons/CheckIcon";
 
-export default function ListeningHistory({ content, selectedAnswers }) {
+export default function ListeningHistory({lessonId, content, selectedAnswers }) {
 	const defaultCheck = (questionId, userAnswersArray) => {
 		const match = userAnswersArray.find(
 			(userAnswer) => userAnswer.questionId === questionId
 		);
 		return match ? match.selectedAnswer : null; // Return selectedAnswer if found, else null.
 	};
+
+	const crossRender = (questionId, userAnswersArray) => {
+		const match = userAnswersArray.findIndex(
+			(userAnswer) => userAnswer.questionId === questionId
+		);
+		if (userAnswersArray[match].isCorrect === false) {
+			return true;
+		}
+		return false;
+	};
+
 	// const compare = (option, userAnswer) => {
-    //     console.log("option: ", option);
-    //     console.log("userAnswer: ", userAnswer);
+	//     console.log("option: ", option);
+	//     console.log("userAnswer: ", userAnswer);
 	// 	if (option === userAnswer) {
 	// 		return true;
 	// 	}
@@ -63,7 +76,7 @@ export default function ListeningHistory({ content, selectedAnswers }) {
 											className="flex gap-2">
 											<input
 												disabled
-												className="radio primary"
+												className={`radio `}
 												type="radio"
 												name={
 													question._id
@@ -79,10 +92,32 @@ export default function ListeningHistory({ content, selectedAnswers }) {
 													)
 												}
 											/>
-											<span className="ml-4">
+											<span className="ml-4 inline-flex items-center gap-4">
 												{
 													option
 												}
+												{option ===
+												defaultCheck(
+													question._id,
+													selectedAnswers
+												) ? (
+													crossRender(
+														question._id,
+														selectedAnswers
+													) ? (
+														<CrossIcon
+															fill={
+																"red"
+															}
+														/>
+													) : (
+														<CheckIcon
+															fill={
+																"green"
+															}
+														/>
+													)
+												) : null}
 											</span>
 										</label>
 									)

@@ -17,13 +17,6 @@ export default function ListeningTest(props) {
 			setData(res);
 			setQuestions(res.questions);
 			console.log("res questions: ", res.questions);
-			//TODO: Đặt correct answer vào 1 cái global state object (trong context)
-			// setCorrectAnswers(
-			// 	res.questions.map((question) => ({
-			// 		_id: question._id,
-			// 		answer: question.correctAnswer,
-			// 	}))
-			// );
 			const filterdAttributes = res.questions.map(
 				({ _id, correctAnswer }) => ({
 					_id,
@@ -113,6 +106,7 @@ export default function ListeningTest(props) {
 						controls
 						src={data.contentURL}></audio>
 					<form
+					id="listeningTestForm"
 						onSubmit={handleSubmit}
 						className="mt-4">
 						<div className="flex flex-col gap-4">
@@ -185,6 +179,7 @@ export default function ListeningTest(props) {
 									</div>
 								)
 							)}
+							{/* <button form="listeningTestForm" type="submit">submit</button> */}
 						</div>
 					</form>
 				</div>
