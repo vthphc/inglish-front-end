@@ -146,9 +146,9 @@ export default function PhrasesModal(props) {
                         </button>
                     </div>
                 </div>
-                <div method="dialog" className="modal-backdrop">
+                <form method="dialog" className="modal-backdrop">
                     <button>close</button>
-                </div>
+                </form>
             </dialog>
         </div>
     );
