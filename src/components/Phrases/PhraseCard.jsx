@@ -18,8 +18,9 @@ export default function PhraseCard({ phrase }) {
     const handleDelete = async (id) => {
         const res = await deletePhraseApi(id);
         if (res) {
-            alert("Phrase deleted successfully!");
+            // alert("Phrase deleted successfully!");
 			setIsPhraseDetailsOpen(false);
+            window.location.reload();
         } else {
             alert("Failed to delete the phrase. Please try again.");
         }
