@@ -22,8 +22,6 @@ export default function Phrases() {
 			setLoading(false);
 		};
 		fetchPhrases();
-
-		console.log("Phrases: ", phrases);
 	}, []);
 
 	return (

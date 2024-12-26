@@ -35,11 +35,22 @@ export default function FlashcardDetails(props) {
                         <span className="font-bold text-2xl">Example:</span>{" "}
                         <br />
                         <p className="italic text-gray-500">
-                            Not Available on current version.
+                            Not available on current version.
                         </p>
                     </p>
                     <p className="font-bold text-2xl">Pronunciation:</p>
-                    <p className="italic text-gray-500">Not Available on current version.</p>
+                    <div className="flex flex-row space-x-4">
+                        {phonetics.map((phonetic, index) => (
+                            <div key={index} className="flex flex-col">
+                                <span className="font-bold">
+                                    {phonetic.text}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                    <p className="italic text-gray-500">
+                        Audio is not available on current version.
+                    </p>
                 </div>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>

@@ -102,7 +102,7 @@ export default function Home() {
                                 )}
                                 <div
                                     onClick={() => navigate("/flashcards")}
-                                    className="p-4 bg-white cursor-pointer shadow-md rounded-md hover:shadow-lg transition duration-300"
+                                    className="p-4 bg-white hover:scale-105 cursor-pointer shadow-md rounded-md hover:shadow-lg transition duration-300"
                                 >
                                     <span className="text-purple-700 font-semibold">
                                         Đến xem chi tiết
@@ -137,7 +137,7 @@ export default function Home() {
                                 ))}
                                 <div
                                     onClick={() => navigate("/phrases")}
-                                    className="p-4 bg-white cursor-pointer shadow-md rounded-md hover:shadow-lg transition duration-300"
+                                    className="p-4 bg-white hover:scale-105 cursor-pointer shadow-md rounded-md hover:shadow-lg transition duration-300"
                                 >
                                     <span className="text-purple-700 font-semibold">
                                         Đến xem chi tiết
