@@ -10,7 +10,7 @@ export default function FlashcardCard(props) {
 	const handleDelete = async (id) => {
 		const res = await deleteFlashcardApi(id);
 		if (res) {
-			alert("Flashcard deleted successfully!");
+			// alert("Flashcard deleted successfully!");
 			window.location.reload();
 		} else {
 			alert(
