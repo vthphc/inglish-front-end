@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ExamHistory() {
 	const [loading, setLoading] = useState(true);
-	const { auth, setAuth } = useContext(AuthContext);
+	const { auth } = useContext(AuthContext);
 	const [history, setHistory] = useState([]);
 
 	useEffect(() => {

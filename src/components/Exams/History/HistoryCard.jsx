@@ -18,7 +18,7 @@ export default function HistoryCard({ data }) {
 					<div className="card-actions justify-end">
 						<Link
 							className="text-sm px-2 btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2"
-							to={`/history/${data._id}`}>
+							to={`/history/${data.examId}`}>
 							Chi tiết
 						</Link>
 					</div>

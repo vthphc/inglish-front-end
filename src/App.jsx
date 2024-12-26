@@ -17,6 +17,7 @@ import PhrasesPage from "./pages/PhrasesPage";
 import Contact from "./components/Contact/Contact";
 import HistoryPage from "./pages/HistoryPage";
 import HistoryDetailsPage from "./pages/HistoryDetailsPage";
+import ResultPage from "./pages/ResultPage";
 
 export default function App() {
 	return (
@@ -79,6 +80,10 @@ export default function App() {
 					<Route
 						path="/history/:historyId"
 						element={<HistoryDetailsPage />}
+					/>
+					<Route
+						path="/result/:examId"
+						element={<ResultPage />}
 					/>
 				</Route>
 			</Routes>

@@ -20,11 +20,14 @@ export default function HistoryDetails(props) {
 			const originalExamRes = await getExamByIdApi(
 				historyRes.examId
 			);
+			console.log("History:", historyRes);
+			console.log("Original:", originalExamRes);
 			setHistory(historyRes);
 			setOriginal(originalExamRes);
 			setLoading(false);
 		};
 		fetchDetails();
+		console.log(original);
 	}, []);
 
 	return (
@@ -55,12 +58,12 @@ export default function HistoryDetails(props) {
 						}}>
 						In History
 					</button> */}
-					<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8 my-16">
+					<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8">
 						<form
 							id="completeTest"
 							role="tablist"
 							className="tabs tabs-lifted tabs-lg">
-							{original.content.map(
+							{original?.content?.map(
 								(
 									item,
 									index
@@ -77,7 +80,7 @@ export default function HistoryDetails(props) {
 												type="radio"
 												name={`my_tabs`}
 												role="tab"
-												className="text-base tab text-nowrap checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
+												className="text-base tab checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
 												aria-label={`Tab ${item.title}`}
 												defaultChecked={
 													index ===

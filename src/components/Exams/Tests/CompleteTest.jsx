@@ -67,9 +67,10 @@ export default function CompleteTest(props) {
 			data.title,
 			resultData
 		);
-		if (postRes) console.log("Posted result successfully!");
+		if (postRes) console.log("Status:", postRes);
 		setAnswers([]);
 		setCorrectAnswers([]);
+		navigate("/result/" + props.examId);
 	};
 
 	return (
@@ -85,7 +86,7 @@ export default function CompleteTest(props) {
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
-				<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8 my-16">
+				<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8">
 					<form
 						onSubmit={handleSubmit}
 						id="completeTest"
