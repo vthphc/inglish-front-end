@@ -132,7 +132,7 @@ export default function ReadingHistory({ lessonId, content, selectedAnswers }) {
 										</label>
 									)
 								)}
-								<div className="collapse bg-base-200">
+								{/* <div className="collapse bg-base-200">
 									<input type="checkbox" />
 									<div className="collapse-title text-purple-700 font-bold font-roboto">
 										AI Explanation
@@ -142,7 +142,7 @@ export default function ReadingHistory({ lessonId, content, selectedAnswers }) {
 											{explanation?.map((item, index) => (item._id === question._id ? item.AIExplanation : null))}
 										</p>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						)
 					)}
