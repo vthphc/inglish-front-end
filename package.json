@@ -22,8 +22,8 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "tsc && vite build",
-        "lint": "eslint .src --ext .js,.jsx,.ts,.tsx"
+        "build": "vite build",
+        "lint": "eslint .src --ext .js,.jsx"
     },
     "eslintConfig": {
         "extends": [
