@@ -32,6 +32,7 @@ export default function ReadingHistory({ lessonId, content, selectedAnswers }) {
 			setExplanation(res.questions);
 		};
 		fetchExplanation();
+		console.log(content);
 	}, []);
 
 	// const compare = (option, userAnswer) => {
@@ -132,17 +133,19 @@ export default function ReadingHistory({ lessonId, content, selectedAnswers }) {
 										</label>
 									)
 								)}
-								{/* <div className="collapse bg-base-200">
+								<div className="collapse bg-base-200">
 									<input type="checkbox" />
 									<div className="collapse-title text-purple-700 font-bold font-roboto">
-										AI Explanation
+										Answer
 									</div>
 									<div className="collapse-content">
 										<p>
-											{explanation?.map((item, index) => (item._id === question._id ? item.AIExplanation : null))}
+											{
+												question.correctAnswer
+											}
 										</p>
 									</div>
-								</div> */}
+								</div>
 							</div>
 						)
 					)}
