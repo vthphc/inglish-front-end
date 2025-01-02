@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { getExamByIdApi } from "../../../api/exams/examId";
 import { postExamResult } from "../../../api/users/userTakenExams";
-
+import { useNavigate } from "react-router-dom";
 import { TestContext } from "../../context/test.context";
 import { AuthContext } from "../../context/auth.context";
 import ListeningTest from "./ListeningTest";
@@ -13,17 +13,15 @@ export default function CompleteTest(props) {
 	const [loading, setLoading] = useState(true);
 	const [content, setContent] = useState([]);
 	const [data, setData] = useState();
-	const { auth, setAuth } = useContext(AuthContext);
+	const { auth } = useContext(AuthContext);
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		//TODO: Bỏ vào context test
 		const fetchExam = async () => {
 			const res = await getExamByIdApi(props.examId);
 			setLoading(false);
 			setData(res);
 			setContent(res.content);
-			// console.log("content: ", res.content);
-			// console.log("res: ", res);
 		};
 		fetchExam();
 	}, []);
@@ -66,9 +64,10 @@ export default function CompleteTest(props) {
 			data.title,
 			resultData
 		);
-		if (postRes) console.log("Posted result successfully!");
+		if (postRes) console.log("Status:", postRes);
 		setAnswers([]);
 		setCorrectAnswers([]);
+		navigate("/result/" + props.examId);
 	};
 
 	return (
@@ -84,7 +83,7 @@ export default function CompleteTest(props) {
 					<span className="loading loading-spinner loading-lg text-purple-700"></span>
 				</div>
 			) : (
-				<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8 my-16">
+				<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8">
 					<form
 						onSubmit={handleSubmit}
 						id="completeTest"
@@ -103,7 +102,7 @@ export default function CompleteTest(props) {
 										type="radio"
 										name={`my_tabs`}
 										role="tab"
-										className="text-base tab checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
+										className="text-base text-nowrap tab checked:text-blue-700 checked:font-bold [--tab-bg:#BFDBFE] [--tab-border-color:#BFDBFE]"
 										aria-label={`Tab ${item.title}`}
 										defaultChecked={
 											index ===
@@ -134,11 +133,54 @@ export default function CompleteTest(props) {
 					</form>
 					<div className="flex flex-row-reverse">
 						<button
-							form="completeTest"
-							type="submit"
-							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16">
+							className="btn btn-ghost rounded-2xl bg-purple-700 border-purple-700 hover:border-purple-700 border-2 text-white text-base hover:text-purple-700 hover:bg-white my-8 mx-16"
+							onClick={() =>
+								document
+									.getElementById(
+										"submitModal"
+									)
+									.showModal()
+							}>
 							Submit
 						</button>
+						<dialog
+							id="submitModal"
+							className="modal">
+							<div className="modal-box">
+								<h3 className="font-bold text-lg">
+									Bạn có
+									chắc
+									muốn nộp
+									bài?
+								</h3>
+								<div className="flex justify-between mt-4">
+									<button
+										type="submit"
+										form="completeTest"
+										className="btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2">
+										Có
+									</button>
+									<button
+										onClick={() =>
+											document
+												.getElementById(
+													"submitModal"
+												)
+												.close()
+										}
+										className="btn btn-ghost bg-purple-700 text-white hover:text-purple-700 hover:bg-white hover:border-purple-700 border-2">
+										Không
+									</button>
+								</div>
+							</div>
+							<form
+								method="dialog"
+								className="modal-backdrop">
+								<button>
+									close
+								</button>
+							</form>
+						</dialog>
 					</div>
 				</div>
 			)}

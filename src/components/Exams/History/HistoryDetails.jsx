@@ -10,6 +10,7 @@ export default function HistoryDetails(props) {
 	const [loading, setLoading] = useState(true);
 	const [original, setOriginal] = useState();
 	const [history, setHistory] = useState();
+	
 	useEffect(() => {
 		const fetchDetails = async () => {
 			const historyRes = await getExamHistoryById(
@@ -19,11 +20,14 @@ export default function HistoryDetails(props) {
 			const originalExamRes = await getExamByIdApi(
 				historyRes.examId
 			);
+			console.log("History:", historyRes);
+			console.log("Original:", originalExamRes);
 			setHistory(historyRes);
 			setOriginal(originalExamRes);
 			setLoading(false);
 		};
 		fetchDetails();
+		console.log(original);
 	}, []);
 
 	return (
@@ -40,7 +44,7 @@ export default function HistoryDetails(props) {
 				</div>
 			) : (
 				<>
-					<button
+					{/* <button
 						className="btn btn-ghost"
 						onClick={() => {
 							console.log(original);
@@ -53,13 +57,13 @@ export default function HistoryDetails(props) {
 							console.log(history);
 						}}>
 						In History
-					</button>
-					<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8 my-16">
+					</button> */}
+					<div className="sm:mx-24 md:mx-32 lg:mx-40 xl:mx-60 flex flex-col border-2 border-gray-200 rounded-lg py-4 px-8">
 						<form
 							id="completeTest"
 							role="tablist"
 							className="tabs tabs-lifted tabs-lg">
-							{original.content.map(
+							{original?.content?.map(
 								(
 									item,
 									index
@@ -89,6 +93,9 @@ export default function HistoryDetails(props) {
 												{item.type ===
 												"listening" ? (
 													<ListeningHistory
+														lessonId={
+															item._id
+														}
 														content={
 															item
 														}
@@ -98,6 +105,9 @@ export default function HistoryDetails(props) {
 													/>
 												) : (
 													<ReadingHistory
+														lessonId={
+															item._id
+														}
 														content={
 															item
 														}
