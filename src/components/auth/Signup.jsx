@@ -140,7 +140,7 @@ export default function Signup() {
                 >
                     Đăng ký
                 </button>
-                <div className="flex">
+                {/* <div className="flex">
                     <hr className="border-t-[1] grow m-auto border-gray-300"></hr>
                     <span className="mx-2 text-xl text-gray-500">HOẶC</span>
                     <hr className="border-t-[1] grow m-auto border-gray-300"></hr>
@@ -159,7 +159,7 @@ export default function Signup() {
                 >
                     <FacebookIcon />
                     Đăng ký qua Facebook
-                </button>
+                </button> */}
             </form>
         </div>
     );
