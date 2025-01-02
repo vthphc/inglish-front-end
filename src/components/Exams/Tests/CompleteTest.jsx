@@ -13,18 +13,15 @@ export default function CompleteTest(props) {
 	const [loading, setLoading] = useState(true);
 	const [content, setContent] = useState([]);
 	const [data, setData] = useState();
-	const { auth, setAuth } = useContext(AuthContext);
+	const { auth } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		//TODO: Bỏ vào context test
 		const fetchExam = async () => {
 			const res = await getExamByIdApi(props.examId);
 			setLoading(false);
 			setData(res);
 			setContent(res.content);
-			// console.log("content: ", res.content);
-			// console.log("res: ", res);
 		};
 		fetchExam();
 	}, []);
