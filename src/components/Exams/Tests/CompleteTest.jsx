@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getExamByIdApi } from "../../../api/exams/examId";
 import { postExamResult } from "../../../api/users/userTakenExams";
-import { useNavigate } from "react-router-dom";
-import { TestContext } from "../../context/test.context";
 import { AuthContext } from "../../context/auth.context";
+import { TestContext } from "../../context/test.context";
 import ListeningTest from "./ListeningTest";
 import ReadingTest from "./ReadingTest";
 
@@ -88,7 +88,7 @@ export default function CompleteTest(props) {
 						onSubmit={handleSubmit}
 						id="completeTest"
 						role="tablist"
-						className="tabs tabs-lifted tabs-lg">
+						className="tabs tabs-lifted tabs-lg overflow-x-auto">
 						{content.map((item, index) => {
 							return (
 								<React.Fragment
